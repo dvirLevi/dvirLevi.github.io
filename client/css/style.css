@@ -1,0 +1,384 @@
+html,
+body {
+    background-color: #ffd96c;
+    direction: rtl;
+    font-family: 'Assistant', sans-serif;
+}
+
+.container {
+    /* height: 2000px; */
+}
+
+.header {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    position: relative;
+    box-shadow: 0px 11px 20px -15px #616161;
+}
+
+.header img {
+    width: 10%;
+    margin: 0.5%
+    /* position: absolute;
+    right: 0;
+    top: -10%; */
+}
+
+.header p {
+    width: 25%;
+    text-align: center;
+    font-size: 55px;
+    font-weight: bold;
+    margin: 0
+}
+
+.score {
+    text-align: center;
+    font-size: 40px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: space-between
+}
+
+.text-score {
+    display: flex;
+    width: 15%;
+}
+
+.butt-table {
+    width: 15%;
+    background-color: #f97c7c;
+    border-radius: 20px;
+    font-size: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0.2%;
+    box-shadow: 0 0 20px -7px #272727;
+}
+
+.squareA {
+    width: 20%;
+    margin: 0.5%;
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    font-weight: bold;
+    user-select: none;
+    background-color: rgb(168, 143, 192);
+    box-shadow: 0 0 6px 0px #545454;
+    border-radius: 40px;
+}
+
+.squareA img {
+    width: 60%;
+}
+
+.square {
+    width: 25%;
+    margin: 0.5%;
+    height: 240px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 80px;
+    font-weight: bold;
+    user-select: none;
+    background-color: #efb670;
+    box-shadow: 0 0 6px 0px #545454;
+    border-radius: 40px;
+}
+
+.square img {
+    width: 70%;
+}
+
+.row-table {
+    width: 100%;
+    display: flex;
+}
+.row-table:nth-child(even) {
+    background-color: #f2f2f2
+  }
+
+.col-table {
+    width: 50%;
+    text-align: center;
+    font-size: 25px;
+}
+
+
+
+
+/* The Modal (background) */
+.modal {
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+.modal-score{
+    display: none;
+    /* Hidden by default */
+    position: fixed;
+    /* Stay in place */
+    z-index: 1;
+    /* Sit on top */
+    padding-top: 100px;
+    /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%;
+    /* Full width */
+    height: 100%;
+    /* Full height */
+    overflow: auto;
+    /* Enable scroll if needed */
+    background-color: rgb(0, 0, 0);
+    /* Fallback color */
+    background-color: rgba(0, 0, 0, 0.4);
+    /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    position: relative;
+    background-color: #fefefe;
+    margin: auto;
+    padding: 0;
+    border: 1px solid #888;
+    width: 50%;
+    text-align: center;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    -webkit-animation-name: animatetop;
+    -webkit-animation-duration: 0.4s;
+    animation-name: animatetop;
+    animation-duration: 0.4s
+}
+
+.modal-content img {
+    width: 15%;
+}
+
+/* Add Animation */
+@-webkit-keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+@keyframes animatetop {
+    from {
+        top: -300px;
+        opacity: 0
+    }
+
+    to {
+        top: 0;
+        opacity: 1
+    }
+}
+
+
+.modal-header {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: rgb(0, 0, 0);
+    display: flex;
+    justify-content: center;
+    font-size: 40px;
+    font-weight: bold
+}
+
+.modal-header h2{
+    font-size: 40px;
+    font-weight: bold
+}
+
+.modal-body {
+    padding: 50px 16px;
+}
+.modal-body p{
+    font-size: 40px
+}
+
+.modal-body input{
+    font-size: 20px;
+    border: none;
+    border-bottom:solid rgb(138, 138, 138) 2px;
+    outline: none
+}
+
+.modal-footer {
+    padding: 2px 16px;
+    background-color: #5cb85c;
+    color: white;
+    display: flex;
+    justify-content: center
+}
+
+.modal-footer div{
+    padding: 2px 16px;
+    font-size: 30px;
+    background-color: #5cb85c;
+    background-color: #545454;
+    border-radius: 10px;
+    margin: 1%;
+    cursor: pointer;
+}
+
+#buttNoScore{
+    background-color: rgb(255, 86, 86)
+}
+
+.mobile {
+    display: none
+}
+
+
+
+
+@media (max-width: 767.98px) { 
+  
+    
+    
+    .header p {
+        font-size: 9vw;
+        width: 50%;
+    }
+
+
+    .header img {
+        width:23%;
+        margin: 1%
+    }
+    
+    .score { 
+        font-size: 7vw;
+        font-weight: bold;
+        margin-top: 5%
+    }
+
+    .text-score {
+        width: 30%;
+    }
+
+    .butt-table {
+        width: 30%;
+        font-size: 4.4vw;
+        padding: 7px 0px;
+    }
+    
+    .row-drag {
+        margin-top: 10%
+    }
+    
+    .squareA {
+        width: 30%;
+        margin: 2%;
+        height: 90px;
+        border-radius: 15px;
+    }
+    
+    .squareA img {
+        width: 70%;
+    }
+
+    .row-drop {
+        margin-top: 10%
+    }
+    
+    .square {
+        width: 30%;
+        margin: 1%;
+        height: 95px;
+        border-radius: 20px;
+    }
+    
+    .square img {
+        width: 80%;
+        border-radius: 10px
+    }
+   
+    
+    .col-table {
+        font-size: 6vw;
+    }
+    
+    
+    
+    
+    /* The Modal*/
+    .modal-score{
+        padding-top: 15%;  
+    }
+    
+    /* Modal Content */
+    .modal-content {
+        width: 90%;
+    }
+    .modal-content img {
+        width: 25%;
+    }
+
+    .modal-header {
+        padding: 2% 2%;
+        font-weight: bold
+    }
+    
+    .modal-header h2{
+        font-size: 9vw;
+        font-weight: bold
+    }
+  
+    .modal-body p{
+        font-size: 9vw
+    }
+    
+    .modal-body input{
+        font-size: 20px;
+    }
+    
+    .modal-footer {
+        padding: 2px 16px;
+    }
+    
+    .modal-footer div{
+        padding: 2px 16px;
+        font-size: 9vw;  
+    }
+
+    .mobile {
+        display: block
+    }
+        
+ }

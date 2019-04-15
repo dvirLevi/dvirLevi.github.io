@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="he">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-61347825-4"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'UA-61347825-4');
+    </script>
+
+
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>משחק לפסח</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css"
+        integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+    <link href="https://fonts.googleapis.com/css?family=Assistant" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+</head>
+
+<body>
+    <div id="container" class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="header">
+                    <img src="img/logo.png">
+                    <p>תפוס ת'פסח</p>
+                    <img src="img/logo2.png">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-sm-12">
+                <div class="score">
+
+                    <div class="text-score">ניקוד: <div id="score"></div>
+                    </div>
+                    <div id='buttStart' class="butt-table">התחל!</div>
+
+                    <div id='buttTabl' class="butt-table">לטבלת השיאים</div>
+                </div>
+            </div>
+        </div>
+        <div class="row row-drag">
+            <div id="titleBox" class="col-sm-12 d-flex flex-wrap justify-content-center">
+
+            </div>
+        </div>
+        <div class="row row-drop">
+            <div id="allBox" class="col-sm-12 d-flex flex-wrap justify-content-center">
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12 text-center">
+                <div class="h3 font-weight-bold">הוראות:</div>
+                <div class="h4">מתאים לפסח? גרור את האגדה! <br class="mobile">לא מתאים? גרור את הפח...</div>
+            </div>
+        </div>
+        <div class="row mt-3">
+            <div class="col-12 text-center">
+                <div class="h6">&copy;כל הזכויות שמורות<a href="mailto:rambamlyeladim@gmail.com"> רמב"ם לילדים </a></div>
+            </div>
+        </div>
+        <!-- The Modal -->
+        <div id="myModal" class="modal">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2>הניקוד שלך הוא:<span id="scoreModal"></span></h2>
+                </div>
+                <div class="modal-body">
+                    <p>שלח את הניקוד שלך לטבלת השיאים!</p>
+                    <input id="inpuName" placeholder="הכנס שם">
+                </div>
+                <div class="modal-footer">
+                    <div id="buttNoScore">ביטול</div>
+                    <div id="buttSendScore">שלח!</div>
+                </div>
+            </div>
+
+        </div>
+        <div id="myModalScore" class="modal-score">
+
+            <!-- Modal content -->
+            <div class="modal-content">
+                <div class="modal-header d-flex justify-content-center align-items-center">
+                    <h2>טבלת השיאים:</h2>
+                    <img src="img/300.png" alt="">
+                </div>
+                <div class="modal-body">
+                    <div id="table">
+
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <div id="closeTable">סגור</div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <script src="dragdroptouch-master/DragDropTouch.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
