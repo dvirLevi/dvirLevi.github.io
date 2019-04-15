@@ -1,0 +1,209 @@
+html,
+body {
+    margin: 0%;
+    direction: rtl;
+    font-family: 'Assistant', sans-serif;
+    background-color: #D1E784;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    font-size: 80px;
+    font-weight: bold;
+    background-color: #c2d778;
+    transform: rotate(0.6deg);
+    box-shadow: 1px 1px 16px 0px #3d3d3d;
+    margin-top: 19px;
+}
+
+.row-input {
+    margin-top: 150px
+}
+
+.inpbutt {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.inpbutt p {
+    font-weight: bold;
+    margin: 0px
+}
+
+.inpbutt input {
+    background-color: #d1e784;
+    font-size: 1vw;
+    border: none;
+    border-radius: 2px;
+    margin: 1%;
+    outline: none;
+    border-bottom: solid 2px #a2a2a2;
+}
+
+.butt {
+    padding: 0.5%;
+    border-radius: 2px;
+    margin: 1%;
+    background-color: #F2F8DD;
+    font-size: 1vw;
+    width: 10%;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.butt2 {
+    padding: 0.5%;
+    border-radius: 2px;
+    margin: 1%;
+    background-color: #F2F8DD;
+    font-size: 1vw;
+    width: 10%;
+    font-weight: bold;
+    border-radius: 20px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.row-contentGim {
+    margin-top: 40px
+}
+
+.contentGim {
+    width: 50%;
+    background-color: #F2F8DD;
+    font-size: 1.2vw;
+    border-radius: 10px;
+    margin: 1%;
+    display: flex;
+    padding: 1%;
+    /* direction: ltr; */
+    text-align: right;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: flex-start;
+    min-height: 100px;
+    box-shadow: 0px 0px 11px 0px grey;
+}
+
+/* .divon {
+    min-width: 40x;
+    text-align: center;
+
+} */
+
+.button-copy {
+    background-color: #F2F8DD;
+    cursor: pointer;
+    width: 10%;
+    text-align: center;
+    font-size: 0.8vw;
+    border-radius: 20px;
+    padding: 0.8%;
+    margin: 0 auto;
+    margin-top: 50px;
+}
+
+
+@media screen and (max-width:1199px) {
+    .title {
+        font-size: 12vw;
+    }
+
+    .row-input {
+        margin-top: 70px
+    }
+
+    .inpbutt {
+        width: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .inpbutt input {
+        font-size: 7vw;
+        border-bottom: solid 2px #a2a2a2;
+        width: 60%;
+    }
+
+    .inpbutt p {
+        width: 100%;
+        text-align: center;
+        font-size: 6vw;
+        font-weight: bold;
+        margin: 0px
+    }
+
+    .butt {
+        font-size: 5vw;
+        width: 26%;
+        border-radius: 50px;
+        text-align: center;
+        padding: 5px 0px
+    }
+
+    .butt2 {
+        font-size: 5vw;
+        width: 46%;
+        border-radius: 50px;
+        text-align: center;
+        padding: 5px 0px
+    }
+
+    .row-contentGim {
+        margin-top: 0px
+    }
+
+    .contentGim {
+        width: 100%;
+        font-size: 7vw;
+        border-radius: 10px;
+        margin: 1%;
+        display: flex;
+        padding: 1%;
+        text-align: right;
+        flex-wrap: wrap;
+        flex-direction: row;
+        align-items: center;
+        justify-content: flex-start;
+        min-height: 230px;
+        margin-top: 45px;
+        box-shadow: 0px 0px 11px 0px grey;
+    }
+
+    .divon {
+        min-width: 40x;
+        text-align: center;
+
+    }
+
+    .button-copy {
+        background-color: #F2F8DD;
+        cursor: pointer;
+        width: 40%;
+        text-align: center;
+        font-size: 4.5vw;
+        border-radius: 50px;
+        padding: 0%;
+        margin: 0 auto;
+        margin-top: 30px;
+        padding: 5px 0px
+    }
+}
+
+@media screen and (max-width:991px) {}
+
+@media screen and (max-width:767px) {}
+
+@media screen and (max-width:575px) {}
+
