@@ -166,7 +166,9 @@ function convertTextToNumbers() {
 function amountGim() {
     let am = 0;
     for (let x = 0; x < arrAmount.length; x++) {
+        if(typeof arrAmount[x] == "number"){
         am += arrAmount[x];
+    }
     }
     amount.innerHTML = am;
 }
