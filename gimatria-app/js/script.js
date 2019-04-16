@@ -118,6 +118,22 @@ const arrLaterGim = [{
     {
         later: "-",
         gim: "-"
+    },
+    {
+        later: "?",
+        gim: "?"
+    },
+    {
+        later: "!",
+        gim: "!"
+    },
+    {
+        later: ".",
+        gim: "."
+    },
+    {
+        later: ",",
+        gim: ","
     }
 ];
 
