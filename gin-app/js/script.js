@@ -32,9 +32,32 @@ const createPlants = {
             id: allId
         });
         allId++;
-        this.createBox();
+        // this.createBox();
+        for (let x = 0; x < arrPlants.length; x++) {
+            box = new BoxPlant(arrPlants[x].img, arrPlants[x].id);
+            box.createBox();
+        }
     }
 }
 buttAddPlant.addEventListener('click', function () {
     createPlants.addPlant()
+
 });
+
+class BoxPlant {
+    constructor (img , id) {
+        this.img = img;
+        this.id = id;
+    }
+    createBox() {
+        let box = document.createElement('div');
+        box.className = 'boxPlant';
+        box.setAttribute('id', this.id);
+
+        let img = document.createElement('img');
+        img.src = this.img;
+        box.appendChild(img);
+
+        myPlants.appendChild(box)
+    }
+}
