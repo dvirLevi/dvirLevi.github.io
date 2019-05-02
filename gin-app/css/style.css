@@ -26,6 +26,20 @@ body {
     margin: 6px 0;
 }
 
+.hamburger-plant {
+    width: 26px;
+    position: absolute;
+    top: 1%
+}
+
+.hamburger-plant div {
+    width: 26px;
+    height: 4px;
+    background-color: #1b1b1b57;
+    margin: 4px 0;
+    border-radius: 5px;
+}
+
 .butt-add-plant {
     background-color: #bbda6a;
     padding: 2% 5%;
@@ -47,6 +61,7 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
+    position: relative
 }
 
 input[type="file"] {

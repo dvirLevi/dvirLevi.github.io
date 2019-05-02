@@ -81,6 +81,22 @@ class BoxPlant {
             let img = document.createElement('img');
             img.src = this.img;
             box.appendChild(img);
+            let hamburgerPlant = document.createElement('div');
+            hamburgerPlant.className = "hamburger-plant";
+            hamburgerPlant.innerHTML = `<div></div>
+                                        <div></div>
+                                        <div></div>`;
+            hamburgerPlant.addEventListener("click", function () {
+                alert()
+            });
+            box.appendChild(hamburgerPlant);
+            // box.innerHTML +=   `<div id="hamburgerPlant" class="hamburger-plant">
+            //                         <div></div>
+            //                         <div></div>
+            //                         <div></div>
+            //                     </div>`;
+            // const hamburgerPlant = document.getElementById('hamburgerPlant'); 
+                              
         }
 
         myPlants.appendChild(box)
