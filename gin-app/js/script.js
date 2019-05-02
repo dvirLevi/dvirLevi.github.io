@@ -19,7 +19,6 @@ const createPlants = {
         this.renderElements();
     },
     aploadFile(e) {
-        // var preview = document.querySelector('img');
         console.log(e.target.parentElement.id)
         let idForPushImg = e.target.parentElement.id;
         let file = e.target.files[0];
@@ -89,14 +88,7 @@ class BoxPlant {
             hamburgerPlant.addEventListener("click", function () {
                 alert()
             });
-            box.appendChild(hamburgerPlant);
-            // box.innerHTML +=   `<div id="hamburgerPlant" class="hamburger-plant">
-            //                         <div></div>
-            //                         <div></div>
-            //                         <div></div>
-            //                     </div>`;
-            // const hamburgerPlant = document.getElementById('hamburgerPlant'); 
-                              
+            box.appendChild(hamburgerPlant);                     
         }
 
         myPlants.appendChild(box)
