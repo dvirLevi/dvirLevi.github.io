@@ -1,5 +1,6 @@
 const myPlants = document.getElementById('myPlants');
 const buttAddPlant = document.getElementById('buttAddPlant');
+const displayModal = document.getElementById('displayModal');
 
 
 let allId = 1;
@@ -86,7 +87,7 @@ class BoxPlant {
                                         <div></div>
                                         <div></div>`;
             hamburgerPlant.addEventListener("click", function () {
-                alert()
+                displayModal.style.display = 'block';
             });
             box.appendChild(hamburgerPlant);                     
         }
