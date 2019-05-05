@@ -1,6 +1,7 @@
 const myPlants = document.getElementById('myPlants');
 const buttAddPlant = document.getElementById('buttAddPlant');
 const displayModal = document.getElementById('displayModal');
+const modalBodyM = document.getElementById('modalBodyM');
 
 
 let allId = 1;
@@ -11,7 +12,6 @@ let arrPlants = [];
 
 const createPlants = {
     addPlant() {
-
         arrPlants.push({
             img: "",
             id: allId
@@ -20,13 +20,11 @@ const createPlants = {
         this.renderElements();
     },
     aploadFile(e) {
-        console.log(e.target.parentElement.id)
         let idForPushImg = e.target.parentElement.id;
         let file = e.target.files[0];
         let reader = new FileReader();
 
         reader.addEventListener("load", (e) => {
-            console.log(reader.result)
             for (let x in arrPlants) {
                 if (arrPlants[x].id == idForPushImg) {
                     arrPlants[x].img = reader.result
@@ -42,7 +40,7 @@ const createPlants = {
     renderElements() {
         myPlants.innerHTML = "";
         for (let x = 0; x < arrPlants.length; x++) {
-            box = new BoxPlant(arrPlants[x].img, arrPlants[x].id);
+            let box = new BoxPlant(arrPlants[x].img, arrPlants[x].id);
             box.createBox();
         }
     }
@@ -77,7 +75,7 @@ class BoxPlant {
             label.setAttribute('for', 'buttAddImg' + this.id);
             label.innerHTML += '<p class="w-75 m-0">הוספת תמונה</p><i class="fas fa-cloud-upload-alt w-25"></i>'
             box.appendChild(label);
-        }else {
+        } else {
             let img = document.createElement('img');
             img.src = this.img;
             box.appendChild(img);
@@ -86,12 +84,38 @@ class BoxPlant {
             hamburgerPlant.innerHTML = `<div></div>
                                         <div></div>
                                         <div></div>`;
-            hamburgerPlant.addEventListener("click", function () {
+            hamburgerPlant.addEventListener("click", function (e) {
+                let id = e.target.parentElement.parentElement.id;
+                updadtePlant.openMenu(id);
                 displayModal.style.display = 'block';
             });
-            box.appendChild(hamburgerPlant);                     
+            box.appendChild(hamburgerPlant);
         }
 
         myPlants.appendChild(box)
+    }
+}
+
+const updadtePlant = {
+    openMenu(id) {
+      let objPlant = arrPlants.filter(function(el){
+          return el.id == id
+      });
+      let boxPlantModal = new modalEdit(objPlant[0].img);
+      boxPlantModal.readerMenu()
+    }
+}
+
+class modalEdit {
+    constructor(img) {
+        this.img = img;
+    }
+    readerMenu() {
+        console.log(this.img)
+        modalBodyM.innerHTML = `<div class="d-flex align-items-center justify-content-center w-100">
+                                    <div class="boxPlant">
+                                      <img src="${this.img}">
+                                    </div>
+                                </div>`
     }
 }
