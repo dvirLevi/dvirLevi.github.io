@@ -132,8 +132,7 @@ const editPlant = {
                                 <div id="buttSave">שמור</div>`;
         const buttSave = document.getElementById('buttSave');
         const wrapPboxM =document.getElementById('wrapPboxM');
-        buttSave.addEventListener('click', function(){
-           
+        buttSave.addEventListener('click', function(){ 
             displayModal.style.display = 'none';
         })                        
     },
