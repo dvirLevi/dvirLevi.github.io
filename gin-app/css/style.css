@@ -177,3 +177,7 @@ input[type="file"] {
     font-size: 3vw;
     
 }
+
+::placeholder {
+    color: rgb(37, 37, 37);
+  }

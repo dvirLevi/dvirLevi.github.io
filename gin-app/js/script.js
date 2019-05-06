@@ -107,12 +107,12 @@ const editPlant = {
         modalBodyM.innerHTML = `<div class="d-flex align-items-center justify-content-center w-100">
                                     <div class="box-icon-select mt-5">
                                         <img src="img/bucket.png" alt="">
-                                        <input type="date">
+                                        <input placeholder="בחר תאריך" type="text" onfocus="(this.type='date')">
                                         <p>דישון</p>
                                     </div>
                                     <div class="box-icon-select mt-1">
                                         <img src="img/scissors.png" alt="">
-                                        <input type="date">
+                                        <input placeholder="בחר תאריך" type="text" onfocus="(this.type='date')">
                                         <p>גיזום</p>
                                     </div>
                                     <div class="box-icon-select mt-1">
