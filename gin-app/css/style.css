@@ -57,14 +57,15 @@ body {
 .boxPlant {
     width: 30%;
     height: 95px;
-    background-color: red;
+    background-color: #ffd5d554;
     margin: 1%;
     border-radius: 20px;
     display: flex;
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    position: relative
+    position: relative;
+    box-shadow: 0 0 7px -4px #000000cf;
 }
 
 input[type="file"] {
@@ -78,6 +79,7 @@ input[type="file"] {
     padding: 5px 2px;
     cursor: pointer;
     font-size: 2.7vw;
+    border-radius: 6px;
 }
 
 .boxPlant img {

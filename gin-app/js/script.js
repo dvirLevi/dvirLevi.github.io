@@ -129,7 +129,7 @@ const editPlant = {
                                     <img src="${src}">
                                     </div>
                                 </div>
-                                <div id="buttSave">שמור</div>`;
+                                <div id="buttSave">סיימתי</div>`;
         const buttSave = document.getElementById('buttSave');
         const wrapPboxM =document.getElementById('wrapPboxM');
         buttSave.addEventListener('click', function(){ 
