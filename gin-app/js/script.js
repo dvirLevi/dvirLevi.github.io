@@ -86,7 +86,7 @@ class BoxPlant {
                                         <div></div>`;
             hamburgerPlant.addEventListener("click", function (e) {
                 let id = e.target.parentElement.parentElement.id;
-                updadtePlant.openMenu(id);
+                editPlant.openMenu(id);
                 displayModal.style.display = 'block';
             });
             box.appendChild(hamburgerPlant);
@@ -96,26 +96,46 @@ class BoxPlant {
     }
 }
 
-const updadtePlant = {
+const editPlant = {
+    idOfPlantEdit: "",
     openMenu(id) {
-      let objPlant = arrPlants.filter(function(el){
-          return el.id == id
-      });
-      let boxPlantModal = new modalEdit(objPlant[0].img);
-      boxPlantModal.readerMenu()
-    }
-}
-
-class modalEdit {
-    constructor(img) {
-        this.img = img;
-    }
-    readerMenu() {
-        console.log(this.img)
+        this.idOfPlantEdit = id;
+        let objPlant = arrPlants.filter((el) => {
+            return el.id == this.idOfPlantEdit
+        });
+        let src = objPlant[0].img;
         modalBodyM.innerHTML = `<div class="d-flex align-items-center justify-content-center w-100">
-                                    <div class="boxPlant">
-                                      <img src="${this.img}">
+                                    <div class="box-icon-select mt-5">
+                                        <img src="img/bucket.png" alt="">
+                                        <input type="date">
+                                        <p>דישון</p>
                                     </div>
-                                </div>`
-    }
+                                    <div class="box-icon-select mt-1">
+                                        <img src="img/scissors.png" alt="">
+                                        <input type="date">
+                                        <p>גיזום</p>
+                                    </div>
+                                    <div class="box-icon-select mt-1">
+                                        <img src="img/watering-can.png" alt="">
+                                        <p>השקייה</p>
+                                    </div>
+                                    <div class="box-icon-select mt-5">
+                                        <img src="img/sprout.png" alt="">
+                                        <p>אחר</p>
+                                    </div>
+                                </div>
+                                <div class="d-flex align-items-center justify-content-center w-100">
+                                    <div class="boxPlant">
+                                    <img src="${src}">
+                                    </div>
+                                </div>
+                                <div id="buttSave">שמור</div>`;
+        const buttSave = document.getElementById('buttSave');
+        const wrapPboxM =document.getElementById('wrapPboxM');
+        buttSave.addEventListener('click', function(){
+           
+            displayModal.style.display = 'none';
+        })                        
+    },
+
 }
