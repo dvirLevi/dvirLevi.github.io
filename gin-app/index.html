@@ -7,13 +7,15 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <!-- <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
         integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous">
     </script> -->
-    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+        integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="css/style.css">
-    
+
 </head>
 
 <body>
@@ -36,7 +38,7 @@
             </div>
         </div>
         <div class="row">
-            <div  class="col-12 d-flex justify-content-center">
+            <div class="col-12 d-flex justify-content-center">
                 <div id="buttAddPlant" class="butt-add-plant">הוסף צמח</div>
             </div>
         </div>
@@ -52,38 +54,51 @@
 
     <!-- The Modal -->
     <div id="displayModal" class="displayModal">
-<div class="modal-m">
+        <div class="modal-m">
 
-        <!-- Modal content -->
-        <div class="modal-content-m">
-          <div id="modalBodyM" class="modal-body-m">
-            <!-- <div class="d-flex align-items-center justify-content-center w-100">
-                <div class="box-icon-select mt-5">
-                    <img src="img/bucket.png" alt="">
-                    <input type="date">
-                    <p>דישון</p>
+            <!-- Modal content -->
+            <div class="modal-content-m">
+                <div id="modalBodyM" class="modal-body-m">
+
+                    <div class="d-flex flex-wrap align-items-center justify-content-around w-100">
+                        <p class="w-100 text-center h2 text-white font-weight-bold">עריכת צמח</p>
+                        <div class="box-icon-select mt-5">
+                               
+                            <img src="img/bucket.png" alt="">
+                            <p>דישון</p>
+                            <input placeholder="בחר תאריך" type="text" onfocus="(this.type='date')">
+                            
+                        </div>
+                        <div class="box-icon-select mt-0">
+                                
+                            <img src="img/scissors.png" alt="">
+                            <p>גיזום</p>
+                            <input placeholder="בחר תאריך" type="text" onfocus="(this.type='date')">
+                            
+                        </div>
+                        <div class="box-icon-select mt-0">
+                               
+                            <img src="img/watering-can.png" alt="">
+                            <p>השקייה</p>
+                            
+                        </div>
+                        <div class="box-icon-select mt-5">
+                              
+                            <img src="img/sprout.png" alt="">
+                            <p>אחר</p>
+                            
+                        </div>
+                    </div>
+                    <div class="d-flex align-items-center justify-content-center w-100">
+                        <div id="boxPlant" class="boxPlant">
+                            <!-- <img src="${src}"> -->
+                        </div>
+                    </div>
+                    <div class="bg-dark p-1 text-center h5 rounded-pill text-white w-25 mt-5" id="buttSave">סיימתי</div>
                 </div>
-                <div class="box-icon-select mt-1">
-                    <img src="img/scissors.png" alt="">
-                    <input type="date">
-                    <p>גיזום</p>
-                </div>
-                <div class="box-icon-select mt-1">
-                    <img src="img/watering-can.png" alt="">
-                    <p>השקייה</p>
-                </div>
-                <div class="box-icon-select mt-5">
-                    <img src="img/sprout.png" alt="">
-                    <p>אחר</p>
-                </div>
-            </div> -->
-            <!-- <div class="d-flex align-items-center justify-content-center w-100">
-                <div class="w-25 mt-4 text-center">צמח</div>
-            </div> -->
-          </div>
+            </div>
+
         </div>
-      
-      </div>
     </div>
     <script src="js/script.js"></script>
 </body>

@@ -2,7 +2,7 @@ const myPlants = document.getElementById('myPlants');
 const buttAddPlant = document.getElementById('buttAddPlant');
 const displayModal = document.getElementById('displayModal');
 const modalBodyM = document.getElementById('modalBodyM');
-
+const boxPlant = document.getElementById('boxPlant');
 
 let allId = 1;
 
@@ -104,32 +104,7 @@ const editPlant = {
             return el.id == this.idOfPlantEdit
         });
         let src = objPlant[0].img;
-        modalBodyM.innerHTML = `<div class="d-flex align-items-center justify-content-center w-100">
-                                    <div class="box-icon-select mt-5">
-                                        <img src="img/bucket.png" alt="">
-                                        <input placeholder="בחר תאריך" type="text" onfocus="(this.type='date')">
-                                        <p>דישון</p>
-                                    </div>
-                                    <div class="box-icon-select mt-1">
-                                        <img src="img/scissors.png" alt="">
-                                        <input placeholder="בחר תאריך" type="text" onfocus="(this.type='date')">
-                                        <p>גיזום</p>
-                                    </div>
-                                    <div class="box-icon-select mt-1">
-                                        <img src="img/watering-can.png" alt="">
-                                        <p>השקייה</p>
-                                    </div>
-                                    <div class="box-icon-select mt-5">
-                                        <img src="img/sprout.png" alt="">
-                                        <p>אחר</p>
-                                    </div>
-                                </div>
-                                <div class="d-flex align-items-center justify-content-center w-100">
-                                    <div class="boxPlant">
-                                    <img src="${src}">
-                                    </div>
-                                </div>
-                                <div id="buttSave">סיימתי</div>`;
+        boxPlant.innerHTML = `<img src="${src}">`;
         const buttSave = document.getElementById('buttSave');
         const wrapPboxM =document.getElementById('wrapPboxM');
         buttSave.addEventListener('click', function(){ 

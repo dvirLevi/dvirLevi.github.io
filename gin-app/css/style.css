@@ -154,8 +154,12 @@ input[type="file"] {
 
 .box-icon-select {
     position: relative;
-    width: 25%;
-    text-align: center
+    width: 18%;
+    height: 73px;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center
 
 }
 
@@ -163,12 +167,16 @@ input[type="file"] {
     width: 100%;
     position: absolute;
     right: 0px;
-    bottom:50%;
+    bottom: 0%;
     z-index: -1;
 }
 
 .box-icon-select p {
-    font-weight: bold
+    width: 100%;
+    /* font-weight: bold; */
+    align-self: flex-start;
+    margin: 0px;
+    color: #fff
 }
 
 .box-icon-select input {
