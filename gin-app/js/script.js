@@ -106,10 +106,19 @@ const editPlant = {
         let src = objPlant[0].img;
         boxPlant.innerHTML = `<img src="${src}">`;
         const buttSave = document.getElementById('buttSave');
-        const wrapPboxM =document.getElementById('wrapPboxM');
-        buttSave.addEventListener('click', function(){ 
+        const days = document.getElementById('days');
+        const selectDay = document.getElementById('selectDay');
+        const wrapPboxM = document.getElementById('wrapPboxM');
+        buttSave.addEventListener('click', function () {
             displayModal.style.display = 'none';
-        })                        
+        });
+        days.addEventListener('click', function () {
+            if (selectDay.style.display == 'none') {
+                selectDay.style.display = 'block';
+            }else {
+                selectDay.style.display = 'none';
+            }
+        });
     },
 
 }
