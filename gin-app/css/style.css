@@ -71,6 +71,7 @@ body {
 input[type="file"] {
     display: none;
 }
+
 .custom-file-upload {
     border: 1px solid #ccc;
     width: 89%;
@@ -94,6 +95,7 @@ input[type="file"] {
 .displayModal {
     display: none
 }
+
 .modal-m {
     position: fixed;
     z-index: 1;
@@ -149,7 +151,7 @@ input[type="file"] {
     flex-wrap: wrap;
     justify-content: center;
     align-items: center;
-    
+
 }
 
 .box-icon-select {
@@ -160,7 +162,6 @@ input[type="file"] {
     display: flex;
     flex-wrap: wrap;
     align-items: center
-
 }
 
 .box-icon-select img {
@@ -201,15 +202,16 @@ input[type="file"] {
     justify-content: space-between;
 }
 
-.select-day{
+.select-day {
+    display: none;
     position: absolute;
     width: 100%;
     top: 92%;
     background-color: #ffaaaa;
     z-index: 1;
-display: none
+    
 }
 
 ::placeholder {
     color: rgb(37, 37, 37);
-  }
+}

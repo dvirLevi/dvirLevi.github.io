@@ -3,6 +3,8 @@ const buttAddPlant = document.getElementById('buttAddPlant');
 const displayModal = document.getElementById('displayModal');
 const modalBodyM = document.getElementById('modalBodyM');
 const boxPlant = document.getElementById('boxPlant');
+const days = document.getElementById('days');
+const selectDay = document.getElementById('selectDay');
 
 let allId = 1;
 
@@ -86,8 +88,8 @@ class BoxPlant {
                                         <div></div>`;
             hamburgerPlant.addEventListener("click", function (e) {
                 let id = e.target.parentElement.parentElement.id;
-                editPlant.openMenu(id);
                 displayModal.style.display = 'block';
+                editPlant.openMenu(id);
             });
             box.appendChild(hamburgerPlant);
         }
@@ -106,19 +108,35 @@ const editPlant = {
         let src = objPlant[0].img;
         boxPlant.innerHTML = `<img src="${src}">`;
         const buttSave = document.getElementById('buttSave');
-        const days = document.getElementById('days');
-        const selectDay = document.getElementById('selectDay');
-        const wrapPboxM = document.getElementById('wrapPboxM');
-        buttSave.addEventListener('click', function () {
-            displayModal.style.display = 'none';
-        });
-        days.addEventListener('click', function () {
-            if (selectDay.style.display == 'none') {
-                selectDay.style.display = 'block';
-            }else {
-                selectDay.style.display = 'none';
-            }
-        });
+        selectDay.style.display = 'none';
+        days.onclick = this. selectDay;
+        buttSave.onclick = this.saveEndClose;
+
     },
+    createMenuDay() {
+        alert()
+        for (let x in 8) {
+            const p = document.createElement('p');
+            p.innerHTML = "asdasd";
+            selectDay.appendChild(p)
+        }
+
+    },
+    selectDay() {
+        if (selectDay.style.display == 'none') {
+            selectDay.style.display = 'block';
+        } else {
+            selectDay.style.display = 'none';
+        }
+        selectDay.innerHTML = "";
+        for (let x = 0; x < 8; x++) {
+            const p = document.createElement('p');
+            p.innerHTML = "asdasd";
+            selectDay.appendChild(p)
+        }
+    },
+    saveEndClose() {
+        displayModal.style.display = 'none';
+    }
 
 }
