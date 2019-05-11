@@ -109,19 +109,36 @@ const editPlant = {
         boxPlant.innerHTML = `<img src="${src}">`;
         const buttSave = document.getElementById('buttSave');
         selectDay.style.display = 'none';
-        days.onclick = this. selectDay;
-        buttSave.onclick = this.saveEndClose;
+        days.onclick = ()=>{this.selectDay()};
+        buttSave.onclick = ()=>{ this.saveEndClose()};
 
     },
-    createMenuDay() {
-        alert()
-        for (let x in 8) {
-            const p = document.createElement('p');
-            p.innerHTML = "asdasd";
-            selectDay.appendChild(p)
-        }
-
-    },
+    arrMenu:[
+        {
+            text:"1",
+        },
+        {
+            text:"1",
+        },
+        {
+            text:"1",
+        },
+        {
+            text:"1",
+        },
+        {
+            text:"1",
+        },
+        {
+            text:"1",
+        },
+        {
+            text:"1",
+        },
+        {
+            text:"נקה ימים",
+        },
+    ],
     selectDay() {
         if (selectDay.style.display == 'none') {
             selectDay.style.display = 'block';
@@ -129,11 +146,15 @@ const editPlant = {
             selectDay.style.display = 'none';
         }
         selectDay.innerHTML = "";
-        for (let x = 0; x < 8; x++) {
+        for (let x in this.arrMenu) {
             const p = document.createElement('p');
-            p.innerHTML = "asdasd";
+            p.innerHTML = this.arrMenu[x].text;
+            p.onclick ="";
             selectDay.appendChild(p)
         }
+    },
+    addDay(){
+
     },
     saveEndClose() {
         displayModal.style.display = 'none';
