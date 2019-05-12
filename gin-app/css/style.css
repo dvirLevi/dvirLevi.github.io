@@ -184,7 +184,7 @@ input[type="file"] {
     width: 100%;
     height: 19px;
     border: none;
-    background-color: #ffa3a34d;
+    background-color: #ffa3a387;
     border-radius: 7px;
     font-size: 2vw;
     font-weight: bold;
@@ -193,7 +193,7 @@ input[type="file"] {
 .days {
     width: 100%;
     height: 19px;
-    background-color: #ffa3a34d;
+    background-color: #ffa3a387;
     border-radius: 7px;
     font-size: 2vw;
     font-weight: bold;
@@ -207,7 +207,7 @@ input[type="file"] {
     position: absolute;
     width: 100%;
     top: 92%;
-    background-color: #ffaaaa;
+    background-color: #ffa3a387;
     z-index: 1;
     
 }
