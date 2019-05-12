@@ -88,7 +88,7 @@ class BoxPlant {
                                         <div></div>`;
             hamburgerPlant.onclick = (e)=> {
                 let id = e.target.parentElement.parentElement.id;
-                displayModal.style.display = 'block';
+            
                 editPlant.openMenu(id);
             };
             box.appendChild(hamburgerPlant);
@@ -107,6 +107,7 @@ const editPlant = {
         });
         let src = objPlant[0].img;
         boxPlant.innerHTML = `<img src="${src}">`;
+        displayModal.style.display = 'block';
         const buttSave = document.getElementById('buttSave');
         selectDay.style.display = 'none';
         days.onclick = ()=>{this.selectDay()};
