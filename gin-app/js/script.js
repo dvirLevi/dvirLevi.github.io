@@ -86,11 +86,11 @@ class BoxPlant {
             hamburgerPlant.innerHTML = `<div></div>
                                         <div></div>
                                         <div></div>`;
-            hamburgerPlant.addEventListener("click", function (e) {
+            hamburgerPlant.onclick = (e)=> {
                 let id = e.target.parentElement.parentElement.id;
                 displayModal.style.display = 'block';
                 editPlant.openMenu(id);
-            });
+            };
             box.appendChild(hamburgerPlant);
         }
 
