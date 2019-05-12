@@ -5,6 +5,7 @@ const modalBodyM = document.getElementById('modalBodyM');
 const boxPlant = document.getElementById('boxPlant');
 const days = document.getElementById('days');
 const selectDay = document.getElementById('selectDay');
+const deySelect = document.getElementById('deySelect');
 
 let allId = 1;
 
@@ -86,10 +87,10 @@ class BoxPlant {
             hamburgerPlant.innerHTML = `<div></div>
                                         <div></div>
                                         <div></div>`;
-            hamburgerPlant.addEventListener("click", function (e) {
+            hamburgerPlant.onclick = (e) => {
                 let id = e.target.parentElement.parentElement.id;
                 editPlant.openMenu(id);
-            });
+            };
             box.appendChild(hamburgerPlant);
         }
 
@@ -106,37 +107,41 @@ const editPlant = {
         });
         let src = objPlant[0].img;
         boxPlant.innerHTML = `<img src="${src}">`;
+        // boxPlant.innerHTML += `input`;
         displayModal.style.display = 'block';
         const buttSave = document.getElementById('buttSave');
         selectDay.style.display = 'none';
-        days.onclick = ()=>{this.selectDay()};
-        buttSave.onclick = ()=>{ this.saveEndClose()};
+        days.onclick = () => {
+            this.selectDay()
+        };
+        buttSave.onclick = () => {
+            this.saveEndClose(id)
+        };
 
     },
-    arrMenu:[
-        {
-            text:"1",
+    arrMenu: [{
+            text: "1",
         },
         {
-            text:"1",
+            text: "2",
         },
         {
-            text:"1",
+            text: "3",
         },
         {
-            text:"1",
+            text: "4",
         },
         {
-            text:"1",
+            text: "5",
         },
         {
-            text:"1",
+            text: "6",
         },
         {
-            text:"1",
+            text: "7",
         },
         {
-            text:"נקה ימים",
+            text: "נקה ימים",
         },
     ],
     selectDay() {
@@ -149,14 +154,29 @@ const editPlant = {
         for (let x in this.arrMenu) {
             const p = document.createElement('p');
             p.innerHTML = this.arrMenu[x].text;
-            p.onclick ="";
+            p.onclick = (e) => {
+                this.addDay(e)
+            };
             selectDay.appendChild(p)
         }
     },
-    addDay(){
-
+    addDay(e) {
+        if (deySelect.innerHTML == "בחר ימים בשבוע") {
+            deySelect.innerHTML = ""
+        }
+        if (deySelect.innerHTML.length < 14) {
+            deySelect.innerHTML += e.target.textContent + ","
+        }
+        if(e.target.textContent == "נקה ימים"){
+            deySelect.innerHTML = ""
+        }
     },
-    saveEndClose() {
+    saveEndClose(id) {
+        for(let x in arrPlants){
+            if(arrPlants[x].id == id){
+                console.log(arrPlants[x].id)
+            }
+        }
         displayModal.style.display = 'none';
     }
 

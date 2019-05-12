@@ -156,7 +156,7 @@ input[type="file"] {
 
 .box-icon-select {
     position: relative;
-    width: 18%;
+    width: 22%;
     height: 73px;
     text-align: center;
     display: flex;
@@ -186,8 +186,10 @@ input[type="file"] {
     border: none;
     background-color: #ffa3a387;
     border-radius: 7px;
-    font-size: 2vw;
+    font-size: 2.3vw;
+    padding: 5%;
     font-weight: bold;
+    outline: none
 }
 
 .days {
@@ -195,7 +197,8 @@ input[type="file"] {
     height: 19px;
     background-color: #ffa3a387;
     border-radius: 7px;
-    font-size: 2vw;
+    font-size: 2.3vw;
+    padding: 5%;
     font-weight: bold;
     display: flex;
     align-items: center;
