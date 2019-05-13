@@ -120,25 +120,25 @@ const editPlant = {
 
     },
     arrMenu: [{
-            text: "1",
+            text: "ראשון",
         },
         {
-            text: "2",
+            text: "שני",
         },
         {
-            text: "3",
+            text: "שלישי",
         },
         {
-            text: "4",
+            text: "רביעי",
         },
         {
-            text: "5",
+            text: "חמישי",
         },
         {
-            text: "6",
+            text: "שישי",
         },
         {
-            text: "7",
+            text: "שבת",
         },
         {
             text: "נקה ימים",
@@ -161,12 +161,12 @@ const editPlant = {
         }
     },
     addDay(e) {
-        if (deySelect.innerHTML == "בחר ימים בשבוע") {
+        if (deySelect.innerHTML == "בחר") {
             deySelect.innerHTML = ""
         }
-        if (deySelect.innerHTML.length < 14) {
-            deySelect.innerHTML += e.target.textContent + ","
-        }
+        // if (deySelect.innerHTML.length < 14) {
+            deySelect.innerHTML += e.target.textContent + " "
+        // }
         if(e.target.textContent == "נקה ימים"){
             deySelect.innerHTML = ""
         }
