@@ -215,8 +215,9 @@ input[type="file"] {
 
 .days .dey-select {
     font-size: 3.8vw;
-    padding: 9%;
+    padding: 10%;
     text-align: center;
+    line-height: 1;
 }
 
 .select-day {
