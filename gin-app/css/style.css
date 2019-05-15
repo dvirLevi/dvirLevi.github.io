@@ -214,17 +214,27 @@ input[type="file"] {
 }
 
 .days .dey-select {
+    width: 100%;
     font-size: 3.8vw;
-    padding: 10%;
+}
+
+.days .dey-select div{
+    width: 100%;
     text-align: center;
-    line-height: 1;
+    /* border-top: solid rgb(131, 131, 131) 0.5px; */
+    border-bottom: solid rgb(131, 131, 131) 0.5px;  
+}
+.days .dey-select div:nth-child(1){
+   
+    border-top: solid rgb(131, 131, 131) 0.5px;
+    
 }
 
 .select-day {
     display: none;
     position: absolute;
     width: 100%;
-    top: 92%;
+    top: 98%;
     background-color: #ffa3a387;
     z-index: 1;
     

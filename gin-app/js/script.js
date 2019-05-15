@@ -165,7 +165,7 @@ const editPlant = {
             deySelect.innerHTML = ""
         }
         // if (deySelect.innerHTML.length < 14) {
-            deySelect.innerHTML += e.target.textContent + " "
+            deySelect.innerHTML += `<div>${e.target.textContent}</div>`
         // }
         if(e.target.textContent == "נקה ימים"){
             deySelect.innerHTML = ""
