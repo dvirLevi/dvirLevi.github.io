@@ -161,9 +161,9 @@ const editPlant = {
         }
     },
     addDay(e) {
-        // if (deySelect.innerHTML == "בחר") {
-        //     deySelect.innerHTML = ""
-        // }
+         if (deySelect.innerHTML == "בחר") {
+            deySelect.innerHTML = ""
+        }
         // if (deySelect.innerHTML.length < 14) {
             let day = document.createElement('div');
             day.innerHTML = e.target.textContent;
