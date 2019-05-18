@@ -161,11 +161,15 @@ const editPlant = {
         }
     },
     addDay(e) {
-        if (deySelect.innerHTML == "בחר") {
-            deySelect.innerHTML = ""
-        }
+        // if (deySelect.innerHTML == "בחר") {
+        //     deySelect.innerHTML = ""
+        // }
         // if (deySelect.innerHTML.length < 14) {
-            deySelect.innerHTML += `<div>${e.target.textContent}</div>`
+            let day = document.createElement('div');
+            day.innerHTML = e.target.textContent;
+            // `<div>${e.target.textContent}</div>`;
+            deySelect.insertBefore(day, deySelect.childNodes[0])
+
         // }
         if(e.target.textContent == "נקה ימים"){
             deySelect.innerHTML = ""
