@@ -172,7 +172,7 @@ const editPlant = {
 
         // }
         if(e.target.textContent == "נקה ימים"){
-            deySelect.innerHTML = ""
+            deySelect.innerHTML = "בחר"
         }
     },
     saveEndClose(id) {
