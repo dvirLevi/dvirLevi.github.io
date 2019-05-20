@@ -17,7 +17,8 @@ const createPlants = {
     addPlant() {
         arrPlants.push({
             img: "",
-            id: allId
+            id: allId,
+            days:[]
         });
         allId++;
         this.renderElements();
@@ -49,18 +50,19 @@ const createPlants = {
     }
 }
 buttAddPlant.addEventListener('click', function () {
-    let testIfUndefined = arrPlants.find((el)=>{
+    let testIfUndefined = arrPlants.find((el) => {
         return el.img == ""
     });
-    if(testIfUndefined == undefined){
-    createPlants.addPlant()
-    }else{
-    Swal.fire({
-  type: 'error',
-  title: 'אופס..',
-  text: 'כבר הוספת צמח!',
-  timer: 1500
-})}
+    if (testIfUndefined == undefined) {
+        createPlants.addPlant()
+    } else {
+        Swal.fire({
+            type: 'error',
+            title: 'אופס..',
+            text: 'כבר הוספת צמח!',
+            timer: 1500
+        })
+    }
 });
 
 
@@ -118,7 +120,6 @@ const editPlant = {
         });
         let src = objPlant[0].img;
         boxPlant.innerHTML = `<img src="${src}">`;
-        // boxPlant.innerHTML += `input`;
         displayModal.style.display = 'block';
         const buttSave = document.getElementById('buttSave');
         selectDay.style.display = 'none';
@@ -132,27 +133,35 @@ const editPlant = {
     },
     arrMenu: [{
             text: "ראשון",
+            number: 0
         },
         {
             text: "שני",
+            number: 1
         },
         {
             text: "שלישי",
+            number: 2
         },
         {
             text: "רביעי",
+            number: 3
         },
         {
             text: "חמישי",
+            number: 4
         },
         {
             text: "שישי",
+            number: 5
         },
         {
             text: "שבת",
+            number: 6
         },
         {
             text: "נקה ימים",
+            number: ""
         },
     ],
     selectDay() {
@@ -165,6 +174,7 @@ const editPlant = {
         for (let x in this.arrMenu) {
             const p = document.createElement('p');
             p.innerHTML = this.arrMenu[x].text;
+            p.id = this.arrMenu[x].number;
             p.onclick = (e) => {
                 this.addDay(e)
             };
@@ -172,23 +182,24 @@ const editPlant = {
         }
     },
     addDay(e) {
-         if (deySelect.innerHTML == "בחר") {
+        if (deySelect.innerHTML == "בחר") {
             deySelect.innerHTML = ""
         }
-        // if (deySelect.innerHTML.length < 14) {
-            let day = document.createElement('div');
-            day.innerHTML = e.target.textContent;
-            // `<div>${e.target.textContent}</div>`;
-            deySelect.insertBefore(day, deySelect.childNodes[0])
-
-        // }
-        if(e.target.textContent == "נקה ימים"){
-            deySelect.innerHTML = "בחר"
+        let day = document.createElement('div');
+        day.innerHTML = e.target.textContent;
+        deySelect.insertBefore(day, deySelect.childNodes[0]);
+        let partOfArrPlants = arrPlants.filter((e)=>{
+                return e.id == this.idOfPlantEdit
+        })
+        partOfArrPlants[0].days.push(e.target.id);
+        if (e.target.textContent == "נקה ימים") {
+            deySelect.innerHTML = "בחר";
+            partOfArrPlants[0].days = []
         }
     },
     saveEndClose(id) {
-        for(let x in arrPlants){
-            if(arrPlants[x].id == id){
+        for (let x in arrPlants) {
+            if (arrPlants[x].id == id) {
                 console.log(arrPlants[x].id)
             }
         }
