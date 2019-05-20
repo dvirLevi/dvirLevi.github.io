@@ -58,8 +58,8 @@ buttAddPlant.addEventListener('click', function () {
     } else {
         Swal.fire({
             type: 'error',
-            title: 'אופס..',
-            text: 'כבר הוספת צמח!',
+            title: 'כבר הוספת צמח!',
+            // text: 'כבר הוספת צמח!',
             timer: 1500
         })
     }

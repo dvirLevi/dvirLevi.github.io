@@ -121,26 +121,14 @@ input[type="file"] {
 }
 
 /* Add Animation */
-@-webkit-keyframes animatetop {
-    from {
-        top: -300px;
-        opacity: 0
-    }
-
-    to {
-        top: 0;
-        opacity: 1
-    }
-}
-
 @keyframes animatetop {
     from {
-        top: -300px;
+        transform: scale(0);
         opacity: 0
     }
 
     to {
-        top: 0;
+        transform: scale(1);
         opacity: 1
     }
 }
