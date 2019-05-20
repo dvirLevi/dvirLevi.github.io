@@ -54,7 +54,13 @@ buttAddPlant.addEventListener('click', function () {
     });
     if(testIfUndefined == undefined){
     createPlants.addPlant()
-    }
+    }else{
+    Swal.fire({
+  type: 'error',
+  title: 'אופס..',
+  text: 'כבר הוספת צמח!',
+  timer: 1500
+})}
 });
 
 
