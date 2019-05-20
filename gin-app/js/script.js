@@ -52,7 +52,7 @@ buttAddPlant.addEventListener('click', function () {
     let testIfUndefined = arrPlants.find((el)=>{
         return el.img == ""
     });
-    if(!testIfUndefined == undefined){
+    if(testIfUndefined == undefined){
     createPlants.addPlant()
     }
 });
