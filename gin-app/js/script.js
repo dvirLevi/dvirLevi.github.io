@@ -59,7 +59,7 @@ buttAddPlant.addEventListener('click', function () {
         Swal.fire({
             type: 'error',
             title: 'כבר הוספת צמח!',
-            // text: 'כבר הוספת צמח!',
+            text: 'הוסף תמונה של הצמח..',
             timer: 1500
         })
     }
@@ -104,7 +104,10 @@ class BoxPlant {
                 let id = e.target.parentElement.parentElement.id;
                 editPlant.openMenu(id);
             };
+            box.style.backgroundImage = 'none';
+            box.style.opacity = 1;
             box.appendChild(hamburgerPlant);
+            
         }
 
         myPlants.appendChild(box)
