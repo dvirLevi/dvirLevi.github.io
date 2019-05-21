@@ -186,7 +186,7 @@ const editPlant = {
         }
     },
     addDay(e) {
-        if (deySelect.innerHTML == "בחר") {
+        if (deySelect.innerHTML == "בחר יום") {
             deySelect.innerHTML = ""
         }
         let day = document.createElement('div');
@@ -197,7 +197,7 @@ const editPlant = {
         })
         partOfArrPlants[0].days.push(e.target.id);
         if (e.target.textContent == "נקה ימים") {
-            deySelect.innerHTML = "בחר";
+            deySelect.innerHTML = "בחר יום";
             partOfArrPlants[0].days = []
         }
     },

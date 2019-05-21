@@ -96,9 +96,12 @@ input[type="file"] {
 }
 
 .boxPlant input {
-    width: 92px;
+    width: 87%;
+    padding: 4%;
     background-color: #ffa3a387;
-    border:none;
+    border: none;
+    height: 30px;
+    border-radius: 6px;
     outline: none;
     color: rgb(0, 0, 0);
     font-weight: bold;
