@@ -122,7 +122,8 @@ const editPlant = {
             return el.id == this.idOfPlantEdit
         });
         let src = objPlant[0].img;
-        boxPlant.innerHTML = `<img src="${src}">`;
+        boxPlant.innerHTML = `<img src="${src}">
+                              <input>`;
         displayModal.style.display = 'block';
         const buttSave = document.getElementById('buttSave');
         selectDay.style.display = 'none';
