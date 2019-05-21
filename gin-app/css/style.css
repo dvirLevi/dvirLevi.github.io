@@ -95,6 +95,20 @@ input[type="file"] {
     z-index: -1;
 }
 
+.boxPlant input {
+    width: 92px;
+    background-color: #ffa3a387;
+    border:none;
+    outline: none;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
+.boxPlant input::placeholder {
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+
 /* The Modal (background) */
 .displayModal {
     display: none
@@ -174,11 +188,11 @@ input[type="file"] {
 
 .box-icon-select input {
     width: 100%;
-    height: 19px;
+    height: 30px;
     border: none;
     background-color: #ffa3a387;
     border-radius: 7px;
-    font-size: 2.3vw;
+    font-size: 3.8vw;
     padding: 5%;
     font-weight: bold;
     outline: none

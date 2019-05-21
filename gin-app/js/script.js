@@ -59,7 +59,7 @@ buttAddPlant.addEventListener('click', function () {
         Swal.fire({
             type: 'error',
             title: 'כבר הוספת צמח!',
-            text: 'הוסף תמונה של הצמח..',
+            text: 'כעת הוסף תמונה של הצמח..',
             timer: 1500
         })
     }
@@ -123,7 +123,7 @@ const editPlant = {
         });
         let src = objPlant[0].img;
         boxPlant.innerHTML = `<img src="${src}">
-                              <input>`;
+                              <input placeholder="שם צמח" >`;
         displayModal.style.display = 'block';
         const buttSave = document.getElementById('buttSave');
         selectDay.style.display = 'none';
