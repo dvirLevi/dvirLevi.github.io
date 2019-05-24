@@ -107,10 +107,10 @@ input[type="file"] {
     font-weight: bold;
 }
 
-.boxPlant input::placeholder {
-    color: rgb(0, 0, 0);
+/* .boxPlant input::placeholder {
+    color: rgb(73, 73, 73);
     font-weight: bold;
-}
+} */
 
 /* The Modal (background) */
 .displayModal {
@@ -250,5 +250,6 @@ input[type="file"] {
 }
 
 ::placeholder {
-    color: rgb(37, 37, 37);
+    color: rgb(53, 53, 53);
+    font-weight: bold;
 }

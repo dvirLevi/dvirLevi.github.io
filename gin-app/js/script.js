@@ -6,6 +6,8 @@ const boxPlant = document.getElementById('boxPlant');
 const days = document.getElementById('days');
 const selectDay = document.getElementById('selectDay');
 const deySelect = document.getElementById('deySelect');
+const inputPruning = document.getElementById('inputPruning');
+const inputElk = document.getElementById('inputElk');
 
 let allId = 1;
 
@@ -18,7 +20,10 @@ const createPlants = {
         arrPlants.push({
             img: "",
             id: allId,
-            days:[]
+            days: [],
+            name: "",
+            elk: "",
+            pruning: ""
         });
         allId++;
         this.renderElements();
@@ -107,7 +112,7 @@ class BoxPlant {
             box.style.backgroundImage = 'none';
             box.style.opacity = 1;
             box.appendChild(hamburgerPlant);
-            
+
         }
 
         myPlants.appendChild(box)
@@ -123,7 +128,7 @@ const editPlant = {
         });
         let src = objPlant[0].img;
         boxPlant.innerHTML = `<img src="${src}">
-                              <input placeholder="שם צמח" >`;
+                              <input id="namePlant" placeholder="שם צמח" >`;
         displayModal.style.display = 'block';
         const buttSave = document.getElementById('buttSave');
         selectDay.style.display = 'none';
@@ -192,8 +197,8 @@ const editPlant = {
         let day = document.createElement('div');
         day.innerHTML = e.target.textContent;
         deySelect.insertBefore(day, deySelect.childNodes[0]);
-        let partOfArrPlants = arrPlants.filter((e)=>{
-                return e.id == this.idOfPlantEdit
+        let partOfArrPlants = arrPlants.filter((e) => {
+            return e.id == this.idOfPlantEdit
         })
         partOfArrPlants[0].days.push(e.target.id);
         if (e.target.textContent == "נקה ימים") {
@@ -201,13 +206,20 @@ const editPlant = {
             partOfArrPlants[0].days = []
         }
     },
-    saveEndClose(id) {
+    saveEndClose() {
+        const namePlant = document.getElementById('namePlant');
         for (let x in arrPlants) {
-            if (arrPlants[x].id == id) {
-                console.log(arrPlants[x].id)
+            if (arrPlants[x].id == this.idOfPlantEdit) {
+                arrPlants[x].name = namePlant.value;
+                arrPlants[x].elk = inputElk.value;
+                arrPlants[x].pruning = inputPruning.value;
             }
         }
         displayModal.style.display = 'none';
+        console.log(arrPlants);
+        namePlant.value = "";
+        inputElk.value = "";
+        inputPruning.value = "";
     }
 
 }
