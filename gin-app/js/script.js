@@ -191,7 +191,6 @@ const editPlant = {
         }
     },
     addDay(e) {
-        console.log(this.pointerEditPlant)
         if (deySelect.innerHTML == "בחר יום") {
             deySelect.innerHTML = ""
         }

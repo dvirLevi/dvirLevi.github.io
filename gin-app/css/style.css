@@ -38,9 +38,10 @@ body {
 .hamburger-plant div {
     width: 26px;
     height: 4px;
-    background-color: #1b1b1b57;
+    background-color: #1b1b1ba1;
     margin: 4px 0;
     border-radius: 5px;
+    box-shadow: 0 0 3px 0px white;
 }
 
 .butt-add-plant {
