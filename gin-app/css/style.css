@@ -43,7 +43,7 @@ body {
     margin: 4px 28%;
     border-radius: 5px;
     box-shadow: 0 0 3px 0px white;
-    pointer-events: auto;
+    pointer-events: none;
 }
 
 .butt-add-plant {

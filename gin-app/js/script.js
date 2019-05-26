@@ -104,7 +104,7 @@ class BoxPlant {
                                         <div></div>
                                         <div></div>`;
             hamburgerPlant.onclick = (e) => {
-                let id = e.target.parentElement.parentElement.id;
+                let id = e.target.parentElement.id;
                 editPlant.openMenu(id);
             };
             box.style.backgroundImage = 'none';
@@ -122,10 +122,13 @@ const editPlant = {
     pointerEditPlant: "",
     openMenu(id) {
         this.idOfPlantEdit = id;
+        
         this.pointerEditPlant = arrPlants.filter((el) => {
             return el.id == this.idOfPlantEdit
         });
-        boxPlant.innerHTML = `<img src="${this.pointerEditPlant[0].img}">
+        console.log(this.pointerEditPlant)
+        let src = this.pointerEditPlant[0].img;
+        boxPlant.innerHTML = `<img src="${src}">
                               <input id="namePlant" placeholder="שם צמח" >`;
         if (this.pointerEditPlant[0].days.length) {
             this.pushDay();
