@@ -119,7 +119,7 @@ class BoxPlant {
 
 const editPlant = {
     idOfPlantEdit: "",
-    pointerEditPlant:"",
+    pointerEditPlant: "",
     openMenu(id) {
         this.idOfPlantEdit = id;
         this.pointerEditPlant = arrPlants.filter((el) => {
@@ -128,6 +128,9 @@ const editPlant = {
         let src = this.pointerEditPlant[0].img;
         boxPlant.innerHTML = `<img src="${src}">
                               <input id="namePlant" placeholder="שם צמח" >`;
+        if (this.pointerEditPlant[0].days.length) {
+            this.pushDay();
+        }
         displayModal.style.display = 'block';
         const buttSave = document.getElementById('buttSave');
         selectDay.style.display = 'none';
@@ -173,7 +176,7 @@ const editPlant = {
         },
     ],
     selectDay() {
-        
+
         if (selectDay.style.display == 'none') {
             selectDay.style.display = 'block';
         } else {
@@ -191,35 +194,46 @@ const editPlant = {
         }
     },
     addDay(e) {
-        if (deySelect.innerHTML == "בחר יום") {
-            deySelect.innerHTML = ""
-        }
-        let day = document.createElement('div');
-        day.innerHTML = e.target.textContent;
-        deySelect.insertBefore(day, deySelect.childNodes[0]);
+        // if (deySelect.innerHTML == "בחר יום") {
+        //     deySelect.innerHTML = ""
+        // }
+        // let day = document.createElement('div');
+        // day.innerHTML = e.target.textContent;
+        // deySelect.insertBefore(day, deySelect.childNodes[0]);
         // let partOfArrPlants = arrPlants.filter((e) => {
         //     return e.id == this.idOfPlantEdit
         // })
-        this.pointerEditPlant[0].days.push(e.target.id);
         if (e.target.textContent == "נקה ימים") {
             deySelect.innerHTML = "בחר יום";
             this.pointerEditPlant[0].days = []
+        } else {
+            this.pointerEditPlant[0].days.push(e.target.id);
+            this.pushDay();
+        }
+    },
+    pushDay() {
+        deySelect.innerHTML = ""
+        for (let x in this.pointerEditPlant[0].days) {
+            let day = document.createElement('div');
+            day.innerHTML = this.arrMenu[this.pointerEditPlant[0].days[x]].text;
+            deySelect.insertBefore(day, deySelect.childNodes[0]);
         }
     },
     saveEndClose() {
         const namePlant = document.getElementById('namePlant');
         // for (let x in arrPlants) {
-            // if (arrPlants[x].id == this.idOfPlantEdit) {
-                this.pointerEditPlant[0].name = namePlant.value;
-                this.pointerEditPlant[0].elk = inputElk.value;
-                this.pointerEditPlant[0].pruning = inputPruning.value;
-            // }
+        // if (arrPlants[x].id == this.idOfPlantEdit) {
+        this.pointerEditPlant[0].name = namePlant.value;
+        this.pointerEditPlant[0].elk = inputElk.value;
+        this.pointerEditPlant[0].pruning = inputPruning.value;
+        // }
         // }
         displayModal.style.display = 'none';
         console.log(arrPlants);
         namePlant.value = "";
         inputElk.value = "";
         inputPruning.value = "";
+        deySelect.innerHTML = "בחר יום";
     }
 
 }
