@@ -125,8 +125,7 @@ const editPlant = {
         this.pointerEditPlant = arrPlants.filter((el) => {
             return el.id == this.idOfPlantEdit
         });
-        let src = this.pointerEditPlant[0].img;
-        boxPlant.innerHTML = `<img src="${src}">
+        boxPlant.innerHTML = `<img src="${this.pointerEditPlant[0].img}">
                               <input id="namePlant" placeholder="שם צמח" >`;
         if (this.pointerEditPlant[0].days.length) {
             this.pushDay();
