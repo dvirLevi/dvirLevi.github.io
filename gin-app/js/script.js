@@ -200,10 +200,10 @@ const editPlant = {
             deySelect.innerHTML = "בחר יום";
             this.pointerEditPlant[0].days = []
         } else {
-            let testIsTrue = this.pointerEditPlant[0].days.some((val) => {
+            let testIsAlredy = this.pointerEditPlant[0].days.some((val) => {
                 return val == e.target.id
             })
-            if (!testIsTrue) {
+            if (!testIsAlredy) {
                 this.pointerEditPlant[0].days.push(e.target.id);
                 this.pushDay();
             }
