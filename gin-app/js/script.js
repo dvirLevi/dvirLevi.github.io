@@ -122,7 +122,7 @@ const editPlant = {
     pointerEditPlant: "",
     openMenu(id) {
         this.idOfPlantEdit = id;
-        
+
         this.pointerEditPlant = arrPlants.filter((el) => {
             return el.id == this.idOfPlantEdit
         });
@@ -196,21 +196,17 @@ const editPlant = {
         }
     },
     addDay(e) {
-        // if (deySelect.innerHTML == "בחר יום") {
-        //     deySelect.innerHTML = ""
-        // }
-        // let day = document.createElement('div');
-        // day.innerHTML = e.target.textContent;
-        // deySelect.insertBefore(day, deySelect.childNodes[0]);
-        // let partOfArrPlants = arrPlants.filter((e) => {
-        //     return e.id == this.idOfPlantEdit
-        // })
         if (e.target.textContent == "נקה ימים") {
             deySelect.innerHTML = "בחר יום";
             this.pointerEditPlant[0].days = []
         } else {
-            this.pointerEditPlant[0].days.push(e.target.id);
-            this.pushDay();
+            let testIsTrue = this.pointerEditPlant[0].days.some((val) => {
+                return val == e.target.id
+            })
+            if (!testIsTrue) {
+                this.pointerEditPlant[0].days.push(e.target.id);
+                this.pushDay();
+            }
         }
     },
     pushDay() {
@@ -223,13 +219,9 @@ const editPlant = {
     },
     saveEndClose() {
         const namePlant = document.getElementById('namePlant');
-        // for (let x in arrPlants) {
-        // if (arrPlants[x].id == this.idOfPlantEdit) {
         this.pointerEditPlant[0].name = namePlant.value;
         this.pointerEditPlant[0].elk = inputElk.value;
         this.pointerEditPlant[0].pruning = inputPruning.value;
-        // }
-        // }
         displayModal.style.display = 'none';
         console.log(arrPlants);
         namePlant.value = "";
