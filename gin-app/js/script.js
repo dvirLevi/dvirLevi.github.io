@@ -181,14 +181,22 @@ const editPlant = {
 
         if (selectDay.style.display == 'none') {
             selectDay.style.display = 'block';
+            this.renderDaysInMenu()
         } else {
             selectDay.style.display = 'none';
         }
+    },
+    renderDaysInMenu() {
         selectDay.innerHTML = "";
         for (let x in this.arrMenu) {
             const p = document.createElement('p');
             p.innerHTML = this.arrMenu[x].text;
             p.id = this.arrMenu[x].number;
+            for (let y in this.pointerEditPlant[0].days) {
+                if (this.pointerEditPlant[0].days[y] == x) {
+                    p.className = "one-day-select";
+                }
+            }
             p.onclick = (e) => {
                 this.addDay(e)
             };
@@ -198,14 +206,18 @@ const editPlant = {
     addDay(e) {
         if (e.target.textContent == "נקה ימים") {
             deySelect.innerHTML = "בחר יום";
-            this.pointerEditPlant[0].days = []
+            this.pointerEditPlant[0].days = [];
+            this.renderDaysInMenu();
         } else {
             let testIsAlredy = this.pointerEditPlant[0].days.some((val) => {
                 return val == e.target.id
             })
             if (!testIsAlredy) {
                 this.pointerEditPlant[0].days.push(e.target.id);
+                this.renderDaysInMenu();
                 this.pushDay();
+            } else {
+                // כאן אפשר למחוק יום
             }
         }
     },
