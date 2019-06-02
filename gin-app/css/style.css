@@ -58,8 +58,8 @@ body {
 }
 
 .boxPlant {
-    width: 20%;
-    height: 68px;
+    width: 30%;
+    height: 91px;
     background-color: #ffd5d554;
     background-image: url(../img/asset1.png);
     opacity: 0.8;
@@ -188,11 +188,10 @@ input[type="file"] {
 
 .box-icon-select p {
     width: 100%;
-    /* font-weight: bold; */
     align-self: flex-start;
     margin: 0px;
-    color: rgb(0, 0, 0);
-    font-weight: bold;
+    color: rgb(255, 255, 255);
+    margin-top: -9px;
 }
 
 /* .one-day{
