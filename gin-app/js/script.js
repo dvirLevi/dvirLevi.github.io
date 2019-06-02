@@ -8,6 +8,7 @@ const selectDay = document.getElementById('selectDay');
 const deySelect = document.getElementById('deySelect');
 const inputPruning = document.getElementById('inputPruning');
 const inputElk = document.getElementById('inputElk');
+const editPlants = document.getElementById('editPlants');
 
 let allId = 1;
 
@@ -46,6 +47,7 @@ const createPlants = {
     },
     renderElements() {
         myPlants.innerHTML = "";
+        editPlants.innerHTML = "";
         for (let x = 0; x < arrPlants.length; x++) {
             let box = new BoxPlant(arrPlants[x].img, arrPlants[x].id);
             box.createBox();
@@ -67,8 +69,6 @@ buttAddPlant.addEventListener('click', function () {
         })
     }
 });
-
-
 class BoxPlant {
     constructor(img, id) {
         this.img = img;
@@ -94,6 +94,7 @@ class BoxPlant {
             label.setAttribute('for', 'buttAddImg' + this.id);
             label.innerHTML += '<p class="w-75 m-0">הוספת תמונה</p><i class="fas fa-cloud-upload-alt w-25"></i>'
             box.appendChild(label);
+            editPlants.appendChild(box)
         } else {
             let img = document.createElement('img');
             img.src = this.img;
@@ -110,10 +111,8 @@ class BoxPlant {
             box.style.backgroundImage = 'none';
             box.style.opacity = 1;
             box.appendChild(hamburgerPlant);
-
-        }
-
-        myPlants.appendChild(box)
+            myPlants.appendChild(box);
+        }    
     }
 }
 

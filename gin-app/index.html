@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>גינה-לי</title>
-    
+
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
@@ -45,6 +45,13 @@
         </div>
         <div class="row">
             <div class="col-12">
+                <div id="editPlants" class="d-flex justify-content-center align-items-center flex-wrap m-2">
+
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-12">
                 <div id="myPlants" class="d-flex justify-content-center align-items-center flex-wrap m-2">
 
                 </div>
@@ -66,12 +73,14 @@
                         <div class="box-icon-select mt-5">
                             <img src="img/bucket.png" alt="">
                             <p>דישון</p>
-                            <input id="inputElk" placeholder="בחר תאריך" type="text" onblur="(this.type='text')" onfocus="(this.type='date')">
+                            <input id="inputElk" placeholder="בחר תאריך" type="text" onblur="(this.type='text')"
+                                onfocus="(this.type='date')">
                         </div>
                         <div class="box-icon-select mt-0">
                             <img src="img/scissors.png" alt="">
                             <p>גיזום</p>
-                            <input id="inputPruning" placeholder="בחר תאריך" type="text" onblur="(this.type='text')" onfocus="(this.type='date')">
+                            <input id="inputPruning" placeholder="בחר תאריך" type="text" onblur="(this.type='text')"
+                                onfocus="(this.type='date')">
                         </div>
                         <div class="box-icon-select mt-0">
                             <img src="img/watering-can.png" alt="">
@@ -95,7 +104,8 @@
                             <!-- <img src="${src}"> -->
                         </div>
                     </div>
-                    <div class="bg-dark p-1 pr-4 pl-4 text-center h4 rounded-pill text-white mt-5" id="buttSave">סיימתי</div>
+                    <div class="bg-dark p-1 pr-4 pl-4 text-center h4 rounded-pill text-white mt-5" id="buttSave">סיימתי
+                    </div>
                 </div>
             </div>
         </div>
