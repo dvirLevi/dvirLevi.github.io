@@ -9,6 +9,7 @@ const deySelect = document.getElementById('deySelect');
 const inputPruning = document.getElementById('inputPruning');
 const inputElk = document.getElementById('inputElk');
 const editPlants = document.getElementById('editPlants');
+const inputReminder = document.getElementById('inputReminder');
 
 let allId = 1;
 
@@ -24,7 +25,8 @@ const createPlants = {
             days: [],
             name: "",
             elk: "",
-            pruning: ""
+            pruning: "",
+            reminder: "",
         });
         allId++;
         this.renderElements();
@@ -233,11 +235,13 @@ const editPlant = {
         this.pointerEditPlant[0].name = namePlant.value;
         this.pointerEditPlant[0].elk = inputElk.value;
         this.pointerEditPlant[0].pruning = inputPruning.value;
+        this.pointerEditPlant[0].reminder = inputReminder.value;
         displayModal.style.display = 'none';
         console.log(arrPlants);
         namePlant.value = "";
         inputElk.value = "";
         inputPruning.value = "";
+        inputReminder.value = "";
         deySelect.innerHTML = "בחר יום";
     }
 
