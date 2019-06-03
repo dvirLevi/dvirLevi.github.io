@@ -103,7 +103,7 @@ input[type="file"] {
 .boxPlant img {
     width: 100%;
     position: absolute;
-    z-index: -1;
+    /* z-index: -1; */
 }
 
 .boxPlant input {
@@ -118,6 +118,12 @@ input[type="file"] {
     outline: none;
     color: rgb(0, 0, 0);
     /* font-weight: bold; */
+}
+
+.my-plants {
+    background-color: #ecffbb;
+    border-radius: 9px;
+    padding: 5px;
 }
 
 /* .boxPlant input::placeholder {
@@ -141,7 +147,7 @@ input[type="file"] {
     width: 100%;
     height: 100%;
     overflow: auto;
-    background-color: rgba(0, 0, 0, 0.562);
+    background-color: rgba(68, 68, 68, 0.91);
 }
 
 /* Modal Content */
@@ -199,7 +205,16 @@ input[type="file"] {
     align-self: flex-start;
     margin: 0px;
     color: rgb(255, 255, 255);
-    margin-top: -9px;
+    /* margin-top: -9px; */
+}
+
+.box-icon-select h2 {
+    width: 100%;
+    align-self: flex-start;
+    margin: 0px;
+    color: rgb(255, 255, 255);
+    margin-top: -11px;
+    font-size: 18px
 }
 
 /* .one-day{
