@@ -110,7 +110,7 @@ input[type="file"] {
     width: 87%;
     padding: 4%;
     background-color: #ffffff4f;
-
+    z-index: 1;
     border: none;
     /* border-bottom: solid rgb(56, 56, 56) 1px; */
     height: 30px;

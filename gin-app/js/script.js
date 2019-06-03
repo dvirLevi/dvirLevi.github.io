@@ -123,17 +123,13 @@ const editPlant = {
     pointerEditPlant: "",
     openMenu(id) {
         this.idOfPlantEdit = id;
-
         this.pointerEditPlant = arrPlants.filter((el) => {
             return el.id == this.idOfPlantEdit
         });
-        console.log(this.pointerEditPlant)
         let src = this.pointerEditPlant[0].img;
         boxPlant.innerHTML = `<img src="${src}">
                               <input id="namePlant" placeholder="שם צמח" >`;
-        if (this.pointerEditPlant[0].days.length) {
-            this.pushDay();
-        }
+        this.insertIfHaveData();
         displayModal.style.display = 'block';
         const buttSave = document.getElementById('buttSave');
         selectDay.style.display = 'none';
@@ -144,6 +140,23 @@ const editPlant = {
             this.saveEndClose(id)
         };
 
+    },
+    insertIfHaveData(){
+        if (this.pointerEditPlant[0].days.length) {
+            this.pushDay();
+        }
+        if(this.pointerEditPlant[0].name != ""){
+            namePlant.value = this.pointerEditPlant[0].name;
+        };
+        if(this.pointerEditPlant[0].elk != ""){
+            inputElk.value = this.pointerEditPlant[0].elk;
+        };
+        if(this.pointerEditPlant[0].pruning != ""){
+            inputPruning.value = this.pointerEditPlant[0].pruning;
+        };
+        if(this.pointerEditPlant[0].reminder != ""){
+            inputReminder.value = this.pointerEditPlant[0].reminder;
+        };
     },
     arrMenu: [{
             text: "ראשון",
