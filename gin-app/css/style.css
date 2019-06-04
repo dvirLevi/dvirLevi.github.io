@@ -60,6 +60,7 @@ body {
 .edit-plants {
     background-color: #fec2b65c;
     border-radius: 13px;
+    /* min-height: 110px; */
 }
 
 .boxPlant {
@@ -75,7 +76,7 @@ body {
     align-items: center;
     justify-content: center;
     overflow: hidden;
-    position: relative;
+    position: sticky;
     box-shadow: 0 0 8px 0px #000000cf;
 }
 
