@@ -110,6 +110,7 @@ class BoxPlant {
                 let id = e.target.parentElement.id;
                 editPlant.openMenu(id);
             };
+            box.setAttribute("draggable", "true");
             box.style.backgroundImage = 'none';
             box.style.opacity = 1;
             box.appendChild(hamburgerPlant);
