@@ -66,7 +66,7 @@ body {
 .boxPlant {
     width: 91px;
     height: 91px;
-    background-color: #ffd5d554;
+    background-color: #ffffff4f;
     background-image: url(../img/asset1.png);
     opacity: 0.8;
     background-size: cover;
@@ -118,11 +118,20 @@ input[type="file"] {
     /* font-weight: bold; */
 }
 
-.my-plants {
+.wrap-my-plants {
     background-color: #ecffbb;
     border-radius: 9px;
-    background-color: #ecffbb;
-    border-radius: 9px;
+}
+
+.wrap-my-plants p{
+    width: 100%;
+    text-align: center;
+    font-size: 6vw;
+    margin-bottom: 0;
+    font-weight: bold;
+}
+
+.my-plants { 
     max-height: 384px;
     overflow: scroll;
 }

@@ -130,6 +130,7 @@ const editPlant = {
         let src = this.pointerEditPlant[0].img;
         boxPlant.innerHTML = `<img src="${src}">
                               <input id="namePlant" placeholder="שם צמח" >`;
+        boxPlant.style.backgroundImage = 'none';
         this.insertIfHaveData();
         displayModal.style.display = 'block';
         const buttSave = document.getElementById('buttSave');
