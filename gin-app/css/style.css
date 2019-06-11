@@ -4,6 +4,7 @@ html,
 body {
     direction: rtl;
     font-family: 'Assistant', sans-serif;
+    background-color: #f7ffe0;
 }
 
 .icon {
@@ -58,7 +59,7 @@ body {
 }
 
 .edit-plants {
-    background-color: #fec2b65c;
+    background-color: #66423f40;
     border-radius: 13px;
     /* min-height: 110px; */
 }
@@ -66,7 +67,7 @@ body {
 .boxPlant {
     width: 91px;
     height: 91px;
-    background-color: #ffffff4f;
+    background-color: #ffffff94;
     background-image: url(../img/asset1.png);
     opacity: 0.8;
     background-size: cover;
@@ -116,6 +117,19 @@ input[type="file"] {
     outline: none;
     color: rgb(0, 0, 0);
     /* font-weight: bold; */
+}
+
+.wrap-my-tasks {
+    background-color: #fec2b65c;
+    border-radius: 9px;
+}
+
+.wrap-my-tasks p{
+    width: 100%;
+    text-align: center;
+    font-size: 6vw;
+    margin-bottom: 0;
+    font-weight: bold;
 }
 
 .wrap-my-plants {
