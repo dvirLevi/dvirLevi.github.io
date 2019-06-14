@@ -266,21 +266,24 @@ const editPlant = {
         this.pointerEditPlant[0].elk = inputElk.value;
         this.pointerEditPlant[0].pruning = inputPruning.value;
         this.pointerEditPlant[0].reminder = inputReminder.value;
-        displayModal.style.display = 'none';
-        console.log(arrPlants);
+        openAndCloseMenu(displayModal);
+        this.cleatInputs()
+    },
+    cleatInputs() {
         namePlant.value = "";
         inputElk.value = "";
         inputPruning.value = "";
         inputReminder.value = "";
         deySelect.innerHTML = "בחר יום";
     },
-    deletePlant(){
-       let index = arrPlants.findIndex((value)=>{
+    deletePlant() {
+        let index = arrPlants.findIndex((value) => {
             return value.id == this.idOfPlantEdit
         });
         arrPlants.splice(index, 1);
         openAndCloseMenu(displayModal);
         createPlants.renderElements();
+        this.cleatInputs()
     }
 
 }
