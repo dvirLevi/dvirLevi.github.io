@@ -10,8 +10,18 @@ const inputPruning = document.getElementById('inputPruning');
 const inputElk = document.getElementById('inputElk');
 const editPlants = document.getElementById('editPlants');
 const inputReminder = document.getElementById('inputReminder');
+const buttSave = document.getElementById('buttSave');
+const buttDelete = document.getElementById('buttDelete');
 
 let allId = 1;
+
+const openAndCloseMenu = (element) => {
+    if (element.style.display == 'none') {
+        element.style.display = 'block';
+    } else {
+        element.style.display = 'none';
+    }
+}
 
 let arrPlants = [];
 
@@ -115,7 +125,7 @@ class BoxPlant {
             box.style.opacity = 1;
             box.appendChild(hamburgerPlant);
             myPlants.appendChild(box);
-        }    
+        }
     }
 }
 
@@ -133,30 +143,35 @@ const editPlant = {
         boxPlant.style.backgroundImage = 'none';
         this.insertIfHaveData();
         displayModal.style.display = 'block';
-        const buttSave = document.getElementById('buttSave');
         selectDay.style.display = 'none';
         days.onclick = () => {
-            this.selectDay()
+            openAndCloseMenu(selectDay);
+            if (selectDay.style.display == 'block') {
+                this.renderDaysInMenu()
+            }
         };
         buttSave.onclick = () => {
             this.saveEndClose(id)
         };
+        buttDelete.onclick = () => {
+            this.deletePlant(id)
+        };
 
     },
-    insertIfHaveData(){
+    insertIfHaveData() {
         if (this.pointerEditPlant[0].days.length) {
             this.pushDay();
         }
-        if(this.pointerEditPlant[0].name != ""){
+        if (this.pointerEditPlant[0].name != "") {
             namePlant.value = this.pointerEditPlant[0].name;
         };
-        if(this.pointerEditPlant[0].elk != ""){
+        if (this.pointerEditPlant[0].elk != "") {
             inputElk.value = this.pointerEditPlant[0].elk;
         };
-        if(this.pointerEditPlant[0].pruning != ""){
+        if (this.pointerEditPlant[0].pruning != "") {
             inputPruning.value = this.pointerEditPlant[0].pruning;
         };
-        if(this.pointerEditPlant[0].reminder != ""){
+        if (this.pointerEditPlant[0].reminder != "") {
             inputReminder.value = this.pointerEditPlant[0].reminder;
         };
     },
@@ -193,15 +208,15 @@ const editPlant = {
             number: ""
         },
     ],
-    selectDay() {
+    // selectDay() {
 
-        if (selectDay.style.display == 'none') {
-            selectDay.style.display = 'block';
-            this.renderDaysInMenu()
-        } else {
-            selectDay.style.display = 'none';
-        }
-    },
+    //     if (selectDay.style.display == 'none') {
+    //         selectDay.style.display = 'block';
+    //         this.renderDaysInMenu()
+    //     } else {
+    //         selectDay.style.display = 'none';
+    //     }
+    // },
     renderDaysInMenu() {
         selectDay.innerHTML = "";
         for (let x in this.arrMenu) {
@@ -258,6 +273,14 @@ const editPlant = {
         inputPruning.value = "";
         inputReminder.value = "";
         deySelect.innerHTML = "בחר יום";
+    },
+    deletePlant(){
+       let index = arrPlants.findIndex((value)=>{
+            return value.id == this.idOfPlantEdit
+        });
+        arrPlants.splice(index, 1);
+        openAndCloseMenu(displayModal);
+        createPlants.renderElements();
     }
 
 }

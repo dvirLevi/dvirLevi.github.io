@@ -4,7 +4,13 @@ html,
 body {
     direction: rtl;
     font-family: 'Assistant', sans-serif;
-    background-color: #f7ffe0;
+    background-color: #fdfaeb;
+}
+
+.center-all {
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .icon {
