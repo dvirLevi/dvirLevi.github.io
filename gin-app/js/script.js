@@ -12,8 +12,27 @@ const editPlants = document.getElementById('editPlants');
 const inputReminder = document.getElementById('inputReminder');
 const buttSave = document.getElementById('buttSave');
 const buttDelete = document.getElementById('buttDelete');
+const userNameRgistar = document.getElementById('userNameRgistar');
+const passwordAgainRgistar = document.getElementById('passwordAgainRgistar');
+const passwordRgistar = document.getElementById('passwordRgistar');
+const sentRegistar = document.getElementById('sentRegistar');
+const sentConnect = document.getElementById('sentConnect');
+const displayModalRgistar = document.getElementById('displayModalRgistar');
+const ifRegistar = document.getElementById('ifRegistar');
+const displayRegistar = document.getElementById('displayRegistar');
+const displayConnect = document.getElementById('displayConnect');
+const userNameConnect = document.getElementById('userNameConnect');
+const passwordConnect = document.getElementById('passwordConnect');
+const tasksPruning = document.getElementById('tasksPruning');
+const tasksElk = document.getElementById('tasksElk');
+const tasksWatering = document.getElementById('tasksWatering');
+const tasksTask = document.getElementById('tasksTask');
+const menuOpen = document.getElementById('menuOpen');
+const hamburger = document.getElementById('hamburger');
+const signout = document.getElementById('signout');
 
-let allId = 1;
+
+
 
 const openAndCloseMenu = (element) => {
     if (element.style.display == 'none') {
@@ -22,10 +41,34 @@ const openAndCloseMenu = (element) => {
         element.style.display = 'none';
     }
 }
+const findHigeNamber = (arr) => {
+    let HigeNamber = 0;
+    for (let x in arr) {
+        if (arr[x].id > HigeNamber) {
+            HigeNamber = arr[x].id;
+        }
+    }
+    return HigeNamber + 1;
+}
 
-let arrPlants = [];
+// let arrPlants = [];
 
+let arrPlants;
+let allId;
 
+const menu = {
+    initalMenu() {
+        menuOpen.style.display = 'none';
+        hamburger.onclick = () => {
+            openAndCloseMenu(menuOpen)
+        }
+        signout.onclick = () => {
+            localStorage.removeItem("userNameGinApp");
+            location.reload();
+        }
+    }
+}
+menu.initalMenu()
 
 const createPlants = {
     addPlant() {
@@ -50,8 +93,8 @@ const createPlants = {
                 if (arrPlants[x].id == idForPushImg) {
                     arrPlants[x].img = reader.result
                 }
-                this.renderElements();
             }
+            this.renderElements();
         }, false);
         if (file) {
             reader.readAsDataURL(file);
@@ -60,6 +103,8 @@ const createPlants = {
     renderElements() {
         myPlants.innerHTML = "";
         editPlants.innerHTML = "";
+        server.update(arrPlants);
+
         for (let x = 0; x < arrPlants.length; x++) {
             let box = new BoxPlant(arrPlants[x].img, arrPlants[x].id);
             box.createBox();
@@ -208,15 +253,6 @@ const editPlant = {
             number: ""
         },
     ],
-    // selectDay() {
-
-    //     if (selectDay.style.display == 'none') {
-    //         selectDay.style.display = 'block';
-    //         this.renderDaysInMenu()
-    //     } else {
-    //         selectDay.style.display = 'none';
-    //     }
-    // },
     renderDaysInMenu() {
         selectDay.innerHTML = "";
         for (let x in this.arrMenu) {
@@ -266,8 +302,19 @@ const editPlant = {
         this.pointerEditPlant[0].elk = inputElk.value;
         this.pointerEditPlant[0].pruning = inputPruning.value;
         this.pointerEditPlant[0].reminder = inputReminder.value;
-        openAndCloseMenu(displayModal);
-        this.cleatInputs()
+        if (this.pointerEditPlant[0].name != "") {
+            openAndCloseMenu(displayModal);
+            this.cleatInputs();
+            server.update(arrPlants);
+            tasks.renderTasksToTable();
+        } else {
+            Swal.fire({
+                type: 'error',
+                title: 'אופס...',
+                text: 'יש להכניס שם צמח!',
+                timer: 1500
+            })
+        }
     },
     cleatInputs() {
         namePlant.value = "";
@@ -283,7 +330,217 @@ const editPlant = {
         arrPlants.splice(index, 1);
         openAndCloseMenu(displayModal);
         createPlants.renderElements();
-        this.cleatInputs()
+        tasks.renderTasksToTable();
+        this.cleatInputs();
     }
 
 }
+
+const tasks = {
+    formatDate() {
+        var d = new Date(),
+            month = '' + (d.getMonth() + 1),
+            day = '' + d.getDate(),
+            year = d.getFullYear();
+
+        if (month.length < 2) month = '0' + month;
+        if (day.length < 2) day = '0' + day;
+
+        return [year, month, day].join('-');
+    },
+    day() {
+        return new Date().getDay() + 1;
+    },
+    renderTasksToTable() {
+        tasksElk.innerHTML = "";
+        tasksPruning.innerHTML = "";
+        tasksWatering.innerHTML = "";
+        tasksTask.innerHTML = "";
+        for (let x in arrPlants) {
+            if (arrPlants[x].elk == this.formatDate()) {
+                tasksElk.innerHTML += `<div class="w-100">${arrPlants[x].name}</div>`
+            }
+            if (arrPlants[x].pruning == this.formatDate()) {
+                tasksPruning.innerHTML += `<div class="w-100">${arrPlants[x].name}</div>`
+            }
+            if (arrPlants[x].reminder != "") {
+                tasksTask.innerHTML += `<div class="w-100">${arrPlants[x].reminder}</div>`
+            }
+            for (let y in arrPlants[x].days) {
+                console.log(this.day())
+                console.log(arrPlants[x].days[y])
+                if (+arrPlants[x].days[y] + 1 == this.day()) {
+                    tasksWatering.innerHTML += `<div class="w-100">${arrPlants[x].name}</div>`
+                }
+            }
+        }
+    },
+}
+
+
+const registar = {
+    user: {
+        userName: null,
+        password: null
+    },
+    addEvent() {
+        if (localStorage.getItem("userNameGinApp")) {
+            openAndCloseMenu(displayModalRgistar);
+        } else {
+            sentRegistar.onsubmit = () => {
+                this.sendData();
+                return false;
+            };
+            sentConnect.onsubmit = () => {
+                this.sendDataConnect();
+                return false;
+            };
+            displayRegistar.style.display = 'block';
+            displayConnect.style.display = 'none';
+            ifRegistar.onclick = () => {
+                this.ifRegistarOrConnect()
+            }
+        }
+    },
+    ifRegistarOrConnect() {
+        openAndCloseMenu(displayRegistar);
+        openAndCloseMenu(displayConnect);
+        if (displayRegistar.style.display == "block") {
+            ifRegistar.innerHTML = "כבר רשום? לחץ כאן!";
+        } else {
+            ifRegistar.innerHTML = "להרשמה";
+        }
+    },
+    sendData() {
+        if (passwordAgainRgistar.value == passwordRgistar.value) {
+            this.user.userName = userNameRgistar.value;
+            this.user.password = passwordRgistar.value;
+            server.insert(this.user);
+        } else {
+            Swal.fire({
+                type: 'error',
+                title: 'אופס...',
+                text: 'הססמאות אינן תואמות',
+                timer: 1500
+            })
+        }
+    },
+    sendDataConnect() {
+        this.user.userName = userNameConnect.value;
+        this.user.password = passwordConnect.value;
+        server.conect(this.user);
+    },
+    saveDataInStoreg(data, registerOrConect) {
+        console.log(registerOrConect)
+        if (data == 400) {
+            if (registerOrConect === "registar") {
+                Swal.fire({
+                    type: 'error',
+                    title: '',
+                    text: 'שם משתמש תפוס, בחר שם אחר.',
+                    timer: 1500
+                })
+            } else {
+                Swal.fire({
+                    type: 'error',
+                    title: '',
+                    text: 'שם משתמש או ססמה שגויים..',
+                    timer: 1500
+                })
+            }
+
+        } else {
+            localStorage.setItem("userNameGinApp", JSON.stringify(data));
+            this.addEvent();
+            mainData.inital();
+            if (registerOrConect === "registar") {
+                Swal.fire({
+                    type: 'success',
+                    title: '',
+                    text: data.userName + ' נרשמת בהצלחה!',
+                    timer: 1500
+                })
+            } else {
+                Swal.fire({
+                    type: 'success',
+                    title: '',
+                    text: data.userName + " ברוכים השבים!",
+                    timer: 1500
+                })
+            }
+        }
+    }
+}
+registar.addEvent();
+
+const server = {
+    userId() {
+        if (localStorage.getItem("userNameGinApp")) {
+            return JSON.parse(localStorage.getItem("userNameGinApp")).userId;
+        }
+    },
+    async insert(obj) {
+        const objtojson = JSON.stringify(obj);
+        const response = await fetch('http://localhost:8000/', {
+            method: 'post',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: objtojson
+        });
+        const json = await response.json();
+        console.log(json)
+        registar.saveDataInStoreg(json, "registar");
+    },
+    async update(arr) {
+        const id = this.userId();
+        const objtojson = JSON.stringify(arr);
+        const response = await fetch(`http://localhost:8000/${id}`, {
+            method: 'put',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: objtojson,
+        });
+        const json = await response.json();
+    },
+    async get() {
+        const id = this.userId();
+        // const objtojson = JSON.stringify(arr);
+        const response = await fetch(`http://localhost:8000/${id}`);
+        const json = await response.json();
+        return json.arrPlant;
+    },
+    async conect(obj) {
+        const objtojson = JSON.stringify(obj);
+        const response = await fetch(`http://localhost:8000/conect`, {
+            method: 'post',
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: objtojson,
+        });
+        const json = await response.json();
+        registar.saveDataInStoreg(json, "conect");
+    }
+}
+
+const mainData = {
+    async inital() {
+        if (localStorage.getItem("userNameGinApp")) {
+            arrPlants = await server.get();
+            tasks.renderTasksToTable();
+            if (await arrPlants.length) {
+                allId = findHigeNamber(arrPlants);
+                createPlants.renderElements();
+            } else {
+                allId = 1;
+            }
+        } else {
+            // לבדוק אם מיותר
+            arrPlants = [];
+            allId = 1;
+        }
+    }
+}
+mainData.inital();

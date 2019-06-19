@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css?family=Assistant');
+@import url('https://fonts.googleapis.com/css?family=Assistant:400,700&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Amatic+SC:400,700&display=swap');
 
 html,
 body {
@@ -11,10 +12,19 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .icon {
     width: 33%;
+}
+
+.icon p{
+    margin: 0;
+    margin-right: -8px;
+    font-size: 28px;
+    font-weight: bold;
+    font-family: 'Amatic SC', cursive;
 }
 
 .icon img {
@@ -23,6 +33,16 @@ body {
 
 .menu {
     width: 33%;
+}
+
+.menu-open {
+    position: absolute;
+    background-color: #ffa390;
+    width: 138%;
+    height: 52px;
+    top: 99%;
+    z-index: 2;
+    border-radius: 3px;
 }
 
 .hamburger {
@@ -130,12 +150,25 @@ input[type="file"] {
     border-radius: 9px;
 }
 
-.wrap-my-tasks p{
+.wrap-my-tasks h5{
     width: 100%;
     text-align: center;
     font-size: 6vw;
     margin-bottom: 0;
     font-weight: bold;
+}
+
+.type-Task {
+    width: 25%;
+    border-left: solid #ffb88f 1px;
+}
+
+.type-Task:nth-child(4) {
+    border-left: none;
+}
+.type-Task p{
+ text-align: center; 
+ border-bottom: solid #ffb88f 1px; 
 }
 
 .wrap-my-plants {
@@ -320,3 +353,30 @@ input[type="file"] {
     color: rgb(53, 53, 53);
     font-weight: bold;
 }
+
+/* The Modal registar */
+.display-modal-registar {
+    display: block; /* Hidden by default */
+}
+.modal-registar {
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Sit on top */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  }
+  
+  .modal-content-registar {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+  }
