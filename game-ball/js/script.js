@@ -186,20 +186,22 @@ addEventToBtn = (el, axis, gravity, run, stop) => {
             myGamePiece.speedX = stop;
         }
     }
-    // el.ontouchstart = () => {
-    //     if (axis === 'Y') {
-    //         myGamePiece.speedY = run;
-    //     } else {
-    //         myGamePiece.speedX = run;
-    //     }
-    // }
-    // el.ontouchend = () => {
-    //     if (axis === 'Y') {
-    //         myGamePiece.speedY = stop;
-    //     } else {
-    //         myGamePiece.speedX = stop;
-    //     }
-    // }
+    el.ontouchstart = () => {
+        if (axis === 'Y') {
+            myGamePiece.speedY = run;
+            myGamePiece.gravity = gravity;
+        } else {
+            myGamePiece.speedX = run;
+            myGamePiece.gravity = gravity;
+        }
+    }
+    el.ontouchend = () => {
+        if (axis === 'Y') {
+            myGamePiece.speedY = stop;
+        } else {
+            myGamePiece.speedX = stop;
+        }
+    }
 }
 addEventToBtn(myUpBtn, 'Y', -0.5, -1, 0)
 addEventToBtn(myDownBtn, 'Y', 0.5, 1, 0)
