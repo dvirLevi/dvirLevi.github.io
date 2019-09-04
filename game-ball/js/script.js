@@ -6,8 +6,8 @@ let myRightBtn = document.getElementById('myRightBtn');
 
 function startGame() {
     myGameArea.start();
-    myGamePiece = new mainPlayerGame(50, 50, "red", myGameArea.canvas.width / 2 - 25, myGameArea.canvas.height / 2 - 25); 
-    myGameGod = new godPlayerGame(50, 50, "black", 20, 30); 
+    myGamePiece = new mainPlayerGame(50, 50, "red", myGameArea.canvas.width / 2 - 25, myGameArea.canvas.height / 2 - 25);
+    myGameGod = new godPlayerGame(50, 50, "black", 20, 30);
 }
 
 let myGameArea = {
@@ -37,6 +37,9 @@ class mainPlayerGame {
         this.height = height;
         this.speedX = 0;
         this.speedY = 0;
+        this.gravity = 0;
+        this.gravitySpeedX = 0;
+        this.gravitySpeedY = 0;
         this.color = color;
         this.x = x;
         this.y = y;
@@ -47,21 +50,59 @@ class mainPlayerGame {
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
     newPos() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-        if(this.x >= myGameArea.canvas.width - this.width){
+        this.x += this.speedX + this.gravityX;
+        this.y += this.speedY + this.gravityY;
+        console.log(this.gravityX)
+        // console.log(this.y)
+        if (this.x >= myGameArea.canvas.width - this.width) {
             this.x = myGameArea.canvas.width - this.width
-        } 
-        if(this.x <= 0){
+        }
+        if (this.x <= 0) {
             this.x = 0;
-        }  
-        if(this.y >= myGameArea.canvas.height - this.height){
+        }
+        if (this.y >= myGameArea.canvas.height - this.height) {
             this.y = myGameArea.canvas.height - this.height
-        } 
-        if(this.y <= 0){
+        }
+        if (this.y <= 0) {
             this.y = 0;
-        } 
+        }
     }
+    get gravityX(){
+       if(this.speedX != 0){
+        this.gravitySpeedX += this.gravity;
+        return this.gravitySpeedX
+       } 
+       if(this.speedX == 0){
+           if(this.gravity < 0){
+            if(this.gravitySpeedX != 0)
+            this.gravitySpeedX -= this.gravity
+           }
+           if(this.gravity > 0){
+               if(this.gravitySpeedX != 0)
+                this.gravitySpeedX -= this.gravity
+           }
+        return this.gravitySpeedX
+    }
+       return 0
+    }
+    get gravityY(){
+        if(this.speedY != 0){
+         this.gravitySpeedY += this.gravity;
+         return this.gravitySpeedY
+        } 
+        if(this.speedY == 0){
+            if(this.gravity < 0){
+             if(this.gravitySpeedY != 0)
+             this.gravitySpeedY -= this.gravity
+            }
+            if(this.gravity > 0){
+                if(this.gravitySpeedY != 0)
+                 this.gravitySpeedY -= this.gravity
+            }
+         return this.gravitySpeedY
+     }
+        return 0
+     }
 }
 class godPlayerGame {
     constructor(width, height, color, x, y) {
@@ -74,35 +115,33 @@ class godPlayerGame {
         this.y = y;
     }
     update() {
-        console.log(myGamePiece.x)
-        console.log(this.x)
         let ctx = myGameArea.context;
-        if(this.LocationCheck){
-        ctx.fillStyle = this.color;
-        ctx.fillRect(this.x, this.y, this.width, this.height);
-    }else{
-        this.width = 0;
-        this.height = 0;
-    }
+        if (this.LocationCheck) {
+            ctx.fillStyle = this.color;
+            ctx.fillRect(this.x, this.y, this.width, this.height);
+        } else {
+            this.width = 0;
+            this.height = 0;
+        }
     }
     newPos() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-        if(this.x >= myGameArea.canvas.width - this.width){
+        this.x += this.speedX;
+        this.y += this.speedY;
+        if (this.x >= myGameArea.canvas.width - this.width) {
             this.speedX = -this.speedX;
-        } 
-        if(this.x <= 0){
+        }
+        if (this.x <= 0) {
             this.speedX = -this.speedX;
-        }  
-        if(this.y >= myGameArea.canvas.height - this.height){
+        }
+        if (this.y >= myGameArea.canvas.height - this.height) {
             this.speedY = -this.speedY;
-        } 
-        if(this.y <= 0){
+        }
+        if (this.y <= 0) {
             this.speedY = -this.speedY;
-        } 
+        }
         // this.LocationCheck()
     }
-    get LocationCheck(){
+    get LocationCheck() {
         let myleft = this.x;
         let myright = this.x + this.width;
         let mytop = this.y;
@@ -130,37 +169,39 @@ function updateGameArea() {
 }
 
 
-let addEventToBtn = (el, axis, run, stop)=> {
-    el.onmousedown = ()=> {
-        if(axis === 'Y'){
+addEventToBtn = (el, axis, gravity, run, stop) => {
+    el.onmousedown = () => {
+        if (axis === 'Y') {
             myGamePiece.speedY = run;
-        }else{
+            myGamePiece.gravity = gravity;
+        } else {
             myGamePiece.speedX = run;
+            myGamePiece.gravity = gravity;
         }
-    } 
-    el.onmouseup = ()=> {
-        if(axis === 'Y'){
+    }
+    el.onmouseup = () => {
+        if (axis === 'Y') {
             myGamePiece.speedY = stop;
-        }else{
+        } else {
             myGamePiece.speedX = stop;
         }
     }
-    el.ontouchstart = ()=> {
-        if(axis === 'Y'){
-            myGamePiece.speedY = run;
-        }else{
-            myGamePiece.speedX = run;
-        }
-    } 
-    el.ontouchend = ()=> {
-        if(axis === 'Y'){
-            myGamePiece.speedY = stop;
-        }else{
-            myGamePiece.speedX = stop;
-        }
-    }
+    // el.ontouchstart = () => {
+    //     if (axis === 'Y') {
+    //         myGamePiece.speedY = run;
+    //     } else {
+    //         myGamePiece.speedX = run;
+    //     }
+    // }
+    // el.ontouchend = () => {
+    //     if (axis === 'Y') {
+    //         myGamePiece.speedY = stop;
+    //     } else {
+    //         myGamePiece.speedX = stop;
+    //     }
+    // }
 }
-addEventToBtn(myUpBtn, 'Y', -5, 0)
-addEventToBtn(myDownBtn, 'Y', 5, 0)
-addEventToBtn(myLeftBtn, 'X', -5, 0)
-addEventToBtn(myRightBtn, 'X', 5, 0)
+addEventToBtn(myUpBtn, 'Y', -0.5, -1, 0)
+addEventToBtn(myDownBtn, 'Y', 0.5, 1, 0)
+addEventToBtn(myLeftBtn, 'X', -0.5, -1, 0)
+addEventToBtn(myRightBtn, 'X', 0.5, 1, 0)

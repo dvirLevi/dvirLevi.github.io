@@ -20,5 +20,6 @@ button {
     font-size: 30px;
     width: 100px;
     border: none;
-    background-color: rgb(243, 218, 149)
+    background-color: rgb(243, 218, 149);
+    user-select: none;
 }
