@@ -1,13 +1,19 @@
+// import myGameArea from './myGameArea.js'
+
+
 let myUpBtn = document.getElementById('myUpBtn');
 let myDownBtn = document.getElementById('myDownBtn');
 let myLeftBtn = document.getElementById('myLeftBtn');
 let myRightBtn = document.getElementById('myRightBtn');
 
 
+let myGamePiece;
+let myGameGod;
+
 function startGame() {
     myGameArea.start();
-    myGamePiece = new mainPlayerGame(50, 50, "red", myGameArea.canvas.width / 2 - 25, myGameArea.canvas.height / 2 - 25);
-    myGameGod = new godPlayerGame(50, 50, "black", 20, 30);
+    myGamePiece = new mainPlayerGame(30, 30, "red", myGameArea.canvas.width / 2 - 25, myGameArea.canvas.height / 2 - 25);
+    myGameGod = new godPlayerGame(30, 30, "black", 20, 30);
 }
 
 let myGameArea = {
@@ -37,7 +43,8 @@ class mainPlayerGame {
         this.height = height;
         this.speedX = 0;
         this.speedY = 0;
-        this.gravity = 0;
+        this.gravityY = 0;
+        this.gravityX = 0;
         this.gravitySpeedX = 0;
         this.gravitySpeedY = 0;
         this.color = color;
@@ -50,10 +57,13 @@ class mainPlayerGame {
         ctx.fillRect(this.x, this.y, this.width, this.height);
     }
     newPos() {
-        this.x += this.speedX + this.gravityX;
-        this.y += this.speedY + this.gravityY;
-        console.log(this.gravityX)
-        // console.log(this.y)
+        this.x += this.speedX + this.gravityXF;
+        this.y += this.speedY + this.gravityYF;
+
+        console.log(this.gravityXF)
+        console.log(this.gravityYF)
+        console.log(this.speedY + "asd")
+
         if (this.x >= myGameArea.canvas.width - this.width) {
             this.x = myGameArea.canvas.width - this.width
         }
@@ -67,42 +77,42 @@ class mainPlayerGame {
             this.y = 0;
         }
     }
-    get gravityX(){
-       if(this.speedX != 0){
-        this.gravitySpeedX += this.gravity;
-        return this.gravitySpeedX
-       } 
-       if(this.speedX == 0){
-           if(this.gravity < 0){
-            if(this.gravitySpeedX != 0)
-            this.gravitySpeedX -= this.gravity
-           }
-           if(this.gravity > 0){
-               if(this.gravitySpeedX != 0)
-                this.gravitySpeedX -= this.gravity
-           }
-        return this.gravitySpeedX
-    }
-       return 0
-    }
-    get gravityY(){
-        if(this.speedY != 0){
-         this.gravitySpeedY += this.gravity;
-         return this.gravitySpeedY
-        } 
-        if(this.speedY == 0){
-            if(this.gravity < 0){
-             if(this.gravitySpeedY != 0)
-             this.gravitySpeedY -= this.gravity
+    get gravityXF() {
+        if (this.speedX != 0) {
+            this.gravitySpeedX += this.gravityX;
+            return this.gravitySpeedX
+        }
+        if (this.speedX == 0) {
+            if (this.gravityX < 0) {
+                if (this.gravitySpeedX != 0)
+                    this.gravitySpeedX -= this.gravityX;
             }
-            if(this.gravity > 0){
-                if(this.gravitySpeedY != 0)
-                 this.gravitySpeedY -= this.gravity
+            if (this.gravityX > 0) {
+                if (this.gravitySpeedX != 0)
+                    this.gravitySpeedX -= this.gravityX;
             }
-         return this.gravitySpeedY
-     }
+            return this.gravitySpeedX;
+        }
         return 0
-     }
+    }
+    get gravityYF() {
+        if (this.speedY != 0) {
+            this.gravitySpeedY += this.gravityY;
+            return this.gravitySpeedY
+        }
+        if (this.speedY == 0) {
+            if (this.gravityY < 0) {
+                if (this.gravitySpeedY != 0)
+                    this.gravitySpeedY -= this.gravityY;
+            }
+            if (this.gravityY > 0) {
+                if (this.gravitySpeedY != 0)
+                    this.gravitySpeedY -= this.gravityY;
+            }
+            return this.gravitySpeedY;
+        }
+        return 0
+    }
 }
 class godPlayerGame {
     constructor(width, height, color, x, y) {
@@ -169,14 +179,14 @@ function updateGameArea() {
 }
 
 
-addEventToBtn = (el, axis, gravity, run, stop) => {
+let addEventToBtn = (el, axis, gravity, run, stop) => {
     el.onmousedown = () => {
         if (axis === 'Y') {
             myGamePiece.speedY = run;
-            myGamePiece.gravity = gravity;
+            myGamePiece.gravityY = gravity;
         } else {
             myGamePiece.speedX = run;
-            myGamePiece.gravity = gravity;
+            myGamePiece.gravityX = gravity;
         }
     }
     el.onmouseup = () => {
@@ -186,13 +196,20 @@ addEventToBtn = (el, axis, gravity, run, stop) => {
             myGamePiece.speedX = stop;
         }
     }
+    el.onmouseleave = () => {
+        if (axis === 'Y') {
+            myGamePiece.speedY = stop;
+        } else {
+            myGamePiece.speedX = stop;
+        }
+    }
     el.ontouchstart = () => {
         if (axis === 'Y') {
             myGamePiece.speedY = run;
-            myGamePiece.gravity = gravity;
+            myGamePiece.gravityY = gravity;
         } else {
             myGamePiece.speedX = run;
-            myGamePiece.gravity = gravity;
+            myGamePiece.gravityX = gravity;
         }
     }
     el.ontouchend = () => {

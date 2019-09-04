@@ -15,7 +15,7 @@ canvas {
     flex-wrap: wrap;
 }
 
-button {
+.butt {
     margin: 5px;
     font-size: 30px;
     width: 100px;
