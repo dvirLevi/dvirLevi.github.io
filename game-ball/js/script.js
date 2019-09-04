@@ -180,7 +180,7 @@ function updateGameArea() {
 
 
 let addEventToBtn = (el, axis, gravity, run, stop) => {
-    el.onmousedown = () => {
+    el.onclick = () => {
         if (axis === 'Y') {
             myGamePiece.speedY = run;
             myGamePiece.gravityY = gravity;
@@ -188,39 +188,56 @@ let addEventToBtn = (el, axis, gravity, run, stop) => {
             myGamePiece.speedX = run;
             myGamePiece.gravityX = gravity;
         }
+        setTimeout(()=>{ 
+            if (axis === 'Y') {
+                myGamePiece.speedY = stop;
+            } else {
+                myGamePiece.speedX = stop;
+            }
+         }, 120);
     }
-    el.onmouseup = () => {
-        if (axis === 'Y') {
-            myGamePiece.speedY = stop;
-        } else {
-            myGamePiece.speedX = stop;
-        }
-    }
-    el.onmouseleave = () => {
-        if (axis === 'Y') {
-            myGamePiece.speedY = stop;
-        } else {
-            myGamePiece.speedX = stop;
-        }
-    }
-    el.ontouchstart = () => {
-        if (axis === 'Y') {
-            myGamePiece.speedY = run;
-            myGamePiece.gravityY = gravity;
-        } else {
-            myGamePiece.speedX = run;
-            myGamePiece.gravityX = gravity;
-        }
-    }
-    el.ontouchend = () => {
-        if (axis === 'Y') {
-            myGamePiece.speedY = stop;
-        } else {
-            myGamePiece.speedX = stop;
-        }
-    }
+   
+    // el.onmousedown = () => {
+    //     if (axis === 'Y') {
+    //         myGamePiece.speedY = run;
+    //         myGamePiece.gravityY = gravity;
+    //     } else {
+    //         myGamePiece.speedX = run;
+    //         myGamePiece.gravityX = gravity;
+    //     }
+    // }
+    // el.onmouseup = () => {
+    //     if (axis === 'Y') {
+    //         myGamePiece.speedY = stop;
+    //     } else {
+    //         myGamePiece.speedX = stop;
+    //     }
+    // }
+    // el.onmouseleave = () => {
+    //     if (axis === 'Y') {
+    //         myGamePiece.speedY = stop;
+    //     } else {
+    //         myGamePiece.speedX = stop;
+    //     }
+    // }
+    // el.ontouchstart = () => {
+    //     if (axis === 'Y') {
+    //         myGamePiece.speedY = run;
+    //         myGamePiece.gravityY = gravity;
+    //     } else {
+    //         myGamePiece.speedX = run;
+    //         myGamePiece.gravityX = gravity;
+    //     }
+    // }
+    // el.ontouchend = () => {
+    //     if (axis === 'Y') {
+    //         myGamePiece.speedY = stop;
+    //     } else {
+    //         myGamePiece.speedX = stop;
+    //     }
+    // }
 }
-addEventToBtn(myUpBtn, 'Y', -0.5, -1, 0)
-addEventToBtn(myDownBtn, 'Y', 0.5, 1, 0)
-addEventToBtn(myLeftBtn, 'X', -0.5, -1, 0)
-addEventToBtn(myRightBtn, 'X', 0.5, 1, 0)
+addEventToBtn(myUpBtn, 'Y', -0.5, -5, 0)
+addEventToBtn(myDownBtn, 'Y', 0.5, 5, 0)
+addEventToBtn(myLeftBtn, 'X', -0.5, -5, 0)
+addEventToBtn(myRightBtn, 'X', 0.5, 5, 0)
