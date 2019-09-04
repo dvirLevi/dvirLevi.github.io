@@ -10,11 +10,77 @@ let myRightBtn = document.getElementById('myRightBtn');
 let myGamePiece;
 let myGameGod;
 
-function startGame() {
-    myGameArea.start();
-    myGamePiece = new mainPlayerGame(30, 30, "red", myGameArea.canvas.width / 2 - 25, myGameArea.canvas.height / 2 - 25);
-    myGameGod = new godPlayerGame(30, 30, "black", 20, 30);
+
+let initalGame = {
+    startGame() {
+        myGameArea.start();
+        myGamePiece = new mainPlayerGame(30, 30, "red", myGameArea.canvas.width / 2 - 25, myGameArea.canvas.height / 2 - 25);
+        myGameGod = new godPlayerGame(30, 30, "black", 20, 30);
+        this.addEventToBtn(myUpBtn, 'Y', -0.5, -5, 0)
+        this.addEventToBtn(myDownBtn, 'Y', 0.5, 5, 0)
+        this.addEventToBtn(myLeftBtn, 'X', -0.5, -5, 0)
+        this.addEventToBtn(myRightBtn, 'X', 0.5, 5, 0)
+    },
+    addEventToBtn(el, axis, gravity, run, stop) {
+        // el.onclick = () => {
+        //     if (axis === 'Y') {
+        //         myGamePiece.speedY = run;
+        //         myGamePiece.gravityY = gravity;
+        //     } else {
+        //         myGamePiece.speedX = run;
+        //         myGamePiece.gravityX = gravity;
+        //     }
+        //     setTimeout(()=>{ 
+        //         if (axis === 'Y') {
+        //             myGamePiece.speedY = stop;
+        //         } else {
+        //             myGamePiece.speedX = stop;
+        //         }
+        //      }, 100);
+        // }
+
+        el.onmousedown = () => {
+            if (axis === 'Y') {
+                myGamePiece.speedY = run;
+                myGamePiece.gravityY = gravity;
+            } else {
+                myGamePiece.speedX = run;
+                myGamePiece.gravityX = gravity;
+            }
+        }
+        el.onmouseup = () => {
+            if (axis === 'Y') {
+                myGamePiece.speedY = stop;
+            } else {
+                myGamePiece.speedX = stop;
+            }
+        }
+        el.onmouseleave = () => {
+            if (axis === 'Y') {
+                myGamePiece.speedY = stop;
+            } else {
+                myGamePiece.speedX = stop;
+            }
+        }
+        el.ontouchstart = () => {
+            if (axis === 'Y') {
+                myGamePiece.speedY = run;
+                myGamePiece.gravityY = gravity;
+            } else {
+                myGamePiece.speedX = run;
+                myGamePiece.gravityX = gravity;
+            }
+        }
+        el.ontouchend = () => {
+            if (axis === 'Y') {
+                myGamePiece.speedY = stop;
+            } else {
+                myGamePiece.speedX = stop;
+            }
+        }
+    }
 }
+
 
 let myGameArea = {
     wrapGame: document.getElementById("wrapGame"),
@@ -28,10 +94,17 @@ let myGameArea = {
         this.canvas.height = 470;
         this.context = this.canvas.getContext("2d");
         this.wrapGame.insertBefore(this.canvas, this.wrapGame.childNodes[0]);
-        this.interval = setInterval(updateGameArea, 20);
+        this.interval = setInterval(this.updateGameArea, 20);
     },
     clear() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
+    },
+    updateGameArea() {
+        myGameArea.clear();
+        myGamePiece.newPos();
+        myGamePiece.update();
+        myGameGod.newPos();
+        myGameGod.update();
     }
 }
 
@@ -60,10 +133,6 @@ class mainPlayerGame {
         this.x += this.speedX + this.gravityXF;
         this.y += this.speedY + this.gravityYF;
 
-        console.log(this.gravityXF)
-        console.log(this.gravityYF)
-        console.log(this.speedY + "asd")
-
         if (this.x >= myGameArea.canvas.width - this.width) {
             this.x = myGameArea.canvas.width - this.width
         }
@@ -85,11 +154,11 @@ class mainPlayerGame {
         if (this.speedX == 0) {
             if (this.gravityX < 0) {
                 if (this.gravitySpeedX != 0)
-                    this.gravitySpeedX -= this.gravityX;
+                    this.gravitySpeedX -= this.gravityX / 4;
             }
             if (this.gravityX > 0) {
                 if (this.gravitySpeedX != 0)
-                    this.gravitySpeedX -= this.gravityX;
+                    this.gravitySpeedX -= this.gravityX / 4;
             }
             return this.gravitySpeedX;
         }
@@ -103,11 +172,11 @@ class mainPlayerGame {
         if (this.speedY == 0) {
             if (this.gravityY < 0) {
                 if (this.gravitySpeedY != 0)
-                    this.gravitySpeedY -= this.gravityY;
+                    this.gravitySpeedY -= this.gravityY / 4;
             }
             if (this.gravityY > 0) {
                 if (this.gravitySpeedY != 0)
-                    this.gravitySpeedY -= this.gravityY;
+                    this.gravitySpeedY -= this.gravityY / 4;
             }
             return this.gravitySpeedY;
         }
@@ -167,77 +236,4 @@ class godPlayerGame {
         return crash;
     }
 }
-startGame();
-
-
-function updateGameArea() {
-    myGameArea.clear();
-    myGamePiece.newPos();
-    myGamePiece.update();
-    myGameGod.newPos();
-    myGameGod.update();
-}
-
-
-let addEventToBtn = (el, axis, gravity, run, stop) => {
-    // el.onclick = () => {
-    //     if (axis === 'Y') {
-    //         myGamePiece.speedY = run;
-    //         myGamePiece.gravityY = gravity;
-    //     } else {
-    //         myGamePiece.speedX = run;
-    //         myGamePiece.gravityX = gravity;
-    //     }
-    //     setTimeout(()=>{ 
-    //         if (axis === 'Y') {
-    //             myGamePiece.speedY = stop;
-    //         } else {
-    //             myGamePiece.speedX = stop;
-    //         }
-    //      }, 100);
-    // }
-   
-    el.onmousedown = () => {
-        if (axis === 'Y') {
-            myGamePiece.speedY = run;
-            myGamePiece.gravityY = gravity;
-        } else {
-            myGamePiece.speedX = run;
-            myGamePiece.gravityX = gravity;
-        }
-    }
-    el.onmouseup = () => {
-        if (axis === 'Y') {
-            myGamePiece.speedY = stop;
-        } else {
-            myGamePiece.speedX = stop;
-        }
-    }
-    el.onmouseleave = () => {
-        if (axis === 'Y') {
-            myGamePiece.speedY = stop;
-        } else {
-            myGamePiece.speedX = stop;
-        }
-    }
-    el.ontouchstart = () => {
-        if (axis === 'Y') {
-            myGamePiece.speedY = run;
-            myGamePiece.gravityY = gravity;
-        } else {
-            myGamePiece.speedX = run;
-            myGamePiece.gravityX = gravity;
-        }
-    }
-    el.ontouchend = () => {
-        if (axis === 'Y') {
-            myGamePiece.speedY = stop;
-        } else {
-            myGamePiece.speedX = stop;
-        }
-    }
-}
-addEventToBtn(myUpBtn, 'Y', -0.5, -5, 0)
-addEventToBtn(myDownBtn, 'Y', 0.5, 5, 0)
-addEventToBtn(myLeftBtn, 'X', -0.5, -5, 0)
-addEventToBtn(myRightBtn, 'X', 0.5, 5, 0)
+initalGame.startGame();
