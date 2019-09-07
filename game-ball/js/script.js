@@ -18,7 +18,7 @@ let initalGame = {
         myGameArea.start();
         myGamePiece = new mainPlayerGame(40, 40, './img/smill.png', myGameArea.canvas.width / 2 - 25, myGameArea.canvas.height / 2 - 25);
         myGameGod = new godPlayerGame(30, 30, "black", 20, 30);
-    
+
         this.addEventToBtn(myUpBtn, 'Y', -0.5, -5, 0)
         this.addEventToBtn(myDownBtn, 'Y', 0.5, 5, 0)
         this.addEventToBtn(myLeftBtn, 'X', -0.5, -5, 0)
@@ -250,27 +250,19 @@ class godPlayerGame {
         return crash;
     }
 }
-// const projectiles = ['א', 'ב', 'ג', 'ד', 'ה', 'ו', ];
 
 const initalParticles = {
     arrParticles: [],
-    testArr: 0,
-    intervalParticles(){
-        // setInterval(() => {
-        //     if (this.testArr > this.arrParticles.length - 1) {
-        //         this.testArr = 0
-        //     }
-        //     this.arrParticles.push({a:new drowParticles(myGameGod.x, myGameGod.y)})
-        //     // this.arrParticles[this.testArr].a = new drowParticles(myGameGod.x, myGameGod.y);
-        //     console.log(this.testArr)
-        //     this.testArr++
-        //     }, 50)
-        for(let x = 0; x < 5; x++){
-            this.arrParticles.push({a:new drowParticles(myGameGod.x, myGameGod.y)})
+    intervalParticles() {
+        if (!this.arrParticles.length) {
+            for (let x = 0; x < 20; x++) {
+                this.arrParticles.push({
+                    a: new drowParticles(myGameGod.x, myGameGod.y)
+                })
+            }
         }
     },
-    updateParticles(){
-        // alert()
+    updateParticles() {
         for (let x in this.arrParticles) {
             if (this.arrParticles[x].a) {
                 this.arrParticles[x].a.move()
@@ -291,25 +283,25 @@ class drowParticles {
         this.x = x + myGameGod.width / 2;
         this.y = y + myGameGod.height / 2;
         this.spin = 0.2;
-        this.life = 60;
-        this.maxLife = 60;
-        this.alpha = this.life / this.maxLife
+        this.life = 20;
     }
     move() {
-        this.life -= 0.8;
-        var speed = 8;
+        this.life -= 1;
+        let speed = Math.floor(Math.random() * 8) + 8;
+        console.log(speed)
         var toRadians = this.direction / 180 * 3 * Math.PI;
         this.x += speed * Math.cos(toRadians)
         this.y += speed * Math.sin(toRadians)
         this.angle += this.spin
-        this.drawEmoji()
+        if (this.life >= 0) {
+            this.drawEmoji()
+        }
     }
     drawEmoji() {
         this.ctx.font = this.size + "px Arial"
         this.ctx.textAlign = 'center';
         this.ctx.textBaseline = 'middle';
         this.ctx.save(); /// To restore the state later on using ctx.restore();
-        this.ctx.globalAlpha = this.alpha || 1;
         this.ctx.translate(this.x, this.y);
         this.ctx.rotate(this.angle)
         this.ctx.fillText(this.emoji, 0, 0);
