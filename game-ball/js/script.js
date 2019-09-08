@@ -8,17 +8,14 @@ let myRightBtn = document.getElementById('myRightBtn');
 
 
 let myGamePiece;
-let myGameGod;
-let asd;
-
+// let myGameGod;
 
 
 let initalGame = {
     startGame() {
         myGameArea.start();
         myGamePiece = new mainPlayerGame(40, 40, './img/smill.png', myGameArea.canvas.width / 2 - 25, myGameArea.canvas.height / 2 - 25);
-        myGameGod = new godPlayerGame(30, 30, "black", 20, 30);
-
+        // initalParticles.createNewBadPlayer();
         this.addEventToBtn(myUpBtn, 'Y', -0.5, -5, 0)
         this.addEventToBtn(myDownBtn, 'Y', 0.5, 5, 0)
         this.addEventToBtn(myLeftBtn, 'X', -0.5, -5, 0)
@@ -105,8 +102,8 @@ let myGameArea = {
     updateGameArea() {
         myGameArea.clear();
         myGamePiece.newPos();
-        myGameGod.newPos();
-        initalParticles.updateParticles();
+        // myGameGod.newPos();
+        initalParticles.update();
     }
 }
 
@@ -194,26 +191,38 @@ class mainPlayerGame {
     }
 }
 class godPlayerGame {
-    constructor(width, height, color, x, y) {
+    constructor(width, height, color, x, y, id) {
+        this.id = id;
         this.width = width;
         this.height = height;
         this.speedX = 2;
         this.speedY = 2;
-        this.color = color;
+        this.image = new Image();
+        this.image.src = color;
         this.x = x;
         this.y = y;
         this.ctx = myGameArea.context
     }
     update() {
         if (this.LocationCheck) {
-            this.ctx.fillStyle = this.color;
-            this.ctx.fillRect(this.x, this.y, this.width, this.height);
+            let ctx = myGameArea.context;
+            ctx.drawImage(this.image,
+                this.x,
+                this.y,
+                this.width, this.height);
             // this.drowParticles()
 
         } else {
-            this.width = 0;
-            this.height = 0;
+            // this.width = 0;
+            // this.height = 0;
+            initalParticles.arrParticles = [];
+            initalParticles.Px = this.x;
+            initalParticles.Py = this.y;
             initalParticles.intervalParticles();
+            let index = initalParticles.arrPlayerBad.findIndex((val) => {
+                return val.myGameGod.id == this.id
+            })
+            initalParticles.arrPlayerBad.splice(index, 1);
         }
     }
     newPos() {
@@ -251,44 +260,74 @@ class godPlayerGame {
     }
 }
 
+
 const initalParticles = {
+    widthPlayer: 40,
+    idPlayer: 0,
+    arrPlayerBad: [],
     arrParticles: [],
+    Px: '',
+    Py: '',
+    counter: 180,
+    update() {
+        this.updateParticles();
+        this.createNewBadPlayer();
+    },
+    createNewBadPlayer() {
+        if (this.counter > 200) {
+            let id = this.idPlayer;
+            let x = Math.floor(Math.random() * myGameArea.canvas.height / 2);
+            let y = Math.floor(Math.random() * myGameArea.canvas.width / 2);
+            this.arrPlayerBad.push({
+                myGameGod: new godPlayerGame(this.widthPlayer, this.widthPlayer, './img/black.png', x, y, id)
+            })
+            this.counter = 0;
+            this.idPlayer++;
+        }
+        this.counter++
+    },
     intervalParticles() {
         if (!this.arrParticles.length) {
             for (let x = 0; x < 20; x++) {
                 this.arrParticles.push({
-                    a: new drowParticles(myGameGod.x, myGameGod.y)
+                    a: new drowParticles(this.Px, this.Py, this.widthPlayer)
                 })
             }
         }
     },
     updateParticles() {
+        for (let x in this.arrPlayerBad) {
+            if (this.arrPlayerBad[x].myGameGod) {
+                this.arrPlayerBad[x].myGameGod.newPos()
+            }
+        }
         for (let x in this.arrParticles) {
             if (this.arrParticles[x].a) {
                 this.arrParticles[x].a.move()
             }
         }
+
     }
 
 }
 
 class drowParticles {
-    constructor(x, y) {
+    constructor(x, y, sizePlayer) {
         this.ctx = myGameArea.context
         this.direction = Math.floor(Math.random() * 180) + 180;
         this.emoji = '▞';
         this.size = Math.random() * 10 + 10;
         this.direction = Math.floor(Math.random() * 180) + 180;
         this.angle = 0;
-        this.x = x + myGameGod.width / 2;
-        this.y = y + myGameGod.height / 2;
+        this.x = x + sizePlayer / 2;
+        this.y = y + sizePlayer / 2;
         this.spin = 0.2;
-        this.life = 20;
+        this.life = 15;
     }
     move() {
         this.life -= 1;
         let speed = Math.floor(Math.random() * 8) + 8;
-        console.log(speed)
+        // console.log(speed)
         var toRadians = this.direction / 180 * 3 * Math.PI;
         this.x += speed * Math.cos(toRadians)
         this.y += speed * Math.sin(toRadians)
