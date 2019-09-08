@@ -128,6 +128,7 @@ class mainPlayerGame {
         this.y = y;
     }
     update() {
+        // console.log(this.gravitySpeedX)
         let ctx = myGameArea.context;
         ctx.drawImage(this.image,
             this.x,
@@ -195,15 +196,17 @@ class godPlayerGame {
         this.id = id;
         this.width = width;
         this.height = height;
-        this.speedX = 2;
-        this.speedY = 2;
+        this.speedX = 3;
+        this.speedY = 3;
         this.image = new Image();
         this.image.src = color;
         this.x = x;
         this.y = y;
-        this.ctx = myGameArea.context
+        this.ctx = myGameArea.context;
+        this.speedBoom = 5;
     }
     update() {
+        console.log(myGamePiece.gravitySpeedX)
         if (this.LocationCheck) {
             let ctx = myGameArea.context;
             ctx.drawImage(this.image,
@@ -212,9 +215,7 @@ class godPlayerGame {
                 this.width, this.height);
             // this.drowParticles()
 
-        } else {
-            // this.width = 0;
-            // this.height = 0;
+        } else if (myGamePiece.gravitySpeedX > this.speedBoom || myGamePiece.gravitySpeedX < -this.speedBoom || myGamePiece.gravitySpeedY > this.speedBoom || myGamePiece.gravitySpeedY < -this.speedBoom) {
             initalParticles.arrParticles = [];
             initalParticles.Px = this.x;
             initalParticles.Py = this.y;
@@ -223,6 +224,9 @@ class godPlayerGame {
                 return val.myGameGod.id == this.id
             })
             initalParticles.arrPlayerBad.splice(index, 1);
+        } else {
+            this.speedX = -this.speedX;
+            this.speedY = -this.speedY;
         }
     }
     newPos() {

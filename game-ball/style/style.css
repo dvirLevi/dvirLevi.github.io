@@ -3,7 +3,8 @@
     width: 100%;
 }
 canvas {
-    border: solid #dadada 1px;
+    /* border: solid #dadada 1px; */
+    background-color: rgba(250, 250, 250, 0.527);
     margin: 0 auto;
     /* width: 680px; */
 }
