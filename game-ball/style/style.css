@@ -1,12 +1,18 @@
 
 .wrap-all {
-    width: 100%;
+    width: min-content;
+    margin: 0 auto;
+    position: relative;
 }
 canvas {
     /* border: solid #dadada 1px; */
     background-color: rgba(250, 250, 250, 0.527);
     margin: 0 auto;
     /* width: 680px; */
+}
+
+.content-butt {
+    position: absolute;
 }
 
 .center-all {
@@ -17,12 +23,13 @@ canvas {
 }
 
 .butt {
-    margin: 5px;
-    font-size: 15px;
+    /* margin: 5px; */
+    font-size: 40px;
+    color: rgb(122, 122, 122);
     width: 27px;
     height: 27px;
     border: none;
-    background-color: rgb(243, 218, 149);
+    /* background-color: rgb(243, 218, 149); */
     user-select: none;
 }
 

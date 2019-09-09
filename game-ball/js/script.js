@@ -88,10 +88,16 @@ let myGameArea = {
     start() {
         if (window.innerWidth > 767) {
             this.canvas.width = 700;
+        this.canvas.height = 470;
         } else {
             this.canvas.width = window.innerWidth;
+            this.canvas.height = window.innerHeight;
         }
-        this.canvas.height = 470;
+        let butt = document.getElementsByClassName('butt');
+        for(let b of butt){
+            b.style.height = this.canvas.height / 3 + 'px'
+            b.style.width = this.canvas.width / 2 + 'px'
+        }
         this.context = this.canvas.getContext("2d");
         this.wrapGame.insertBefore(this.canvas, this.wrapGame.childNodes[0]);
         this.interval = setInterval(this.updateGameArea, 20);
@@ -141,16 +147,20 @@ class mainPlayerGame {
         this.y += this.speedY + this.gravityYF;
 
         if (this.x >= myGameArea.canvas.width - this.width) {
-            this.x = myGameArea.canvas.width - this.width
+            this.x = myGameArea.canvas.width - this.width;
+            this.gravitySpeedX = 0
         }
         if (this.x <= 0) {
             this.x = 0;
+            this.gravitySpeedX = 0
         }
         if (this.y >= myGameArea.canvas.height - this.height) {
-            this.y = myGameArea.canvas.height - this.height
+            this.y = myGameArea.canvas.height - this.height;
+            this.gravitySpeedY = 0
         }
         if (this.y <= 0) {
             this.y = 0;
+            this.gravitySpeedY = 0
         }
         this.update()
     }
