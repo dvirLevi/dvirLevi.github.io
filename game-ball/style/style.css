@@ -13,6 +13,7 @@ canvas {
 
 .content-butt {
     position: absolute;
+    bottom: 0;
 }
 
 .center-all {

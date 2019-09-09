@@ -95,7 +95,7 @@ let myGameArea = {
         }
         let butt = document.getElementsByClassName('butt');
         for(let b of butt){
-            b.style.height = this.canvas.height / 3 + 'px'
+            b.style.height = this.canvas.height / 8 + 'px'
             b.style.width = this.canvas.width / 2 + 'px'
         }
         this.context = this.canvas.getContext("2d");
