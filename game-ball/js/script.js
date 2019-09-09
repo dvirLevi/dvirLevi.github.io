@@ -88,18 +88,18 @@ let myGameArea = {
     start() {
         if (window.innerWidth > 767) {
             this.canvas.width = 700;
-        this.canvas.height = 470;
+            this.canvas.height = 470;
         } else {
             this.canvas.width = window.innerWidth;
             this.canvas.height = window.innerHeight;
         }
         let butt = document.getElementsByClassName('butt');
-        for(let b of butt){
+        for (let b of butt) {
             b.style.height = this.canvas.height / 8 + 'px'
             b.style.width = this.canvas.width / 2 + 'px'
         }
         this.context = this.canvas.getContext("2d");
-        this.wrapGame.insertBefore(this.canvas, this.wrapGame.childNodes[0]);
+        this.wrapGame.insertBefore(this.canvas, this.wrapGame.childNodes[2]);
         this.interval = setInterval(this.updateGameArea, 20);
     },
     clear() {
@@ -140,6 +140,7 @@ class mainPlayerGame {
             this.x,
             this.y,
             this.width, this.height);
+        ctx.imageSmoothingQuality = "high";
         // ctx.fillRect(this.x, this.y, this.width, this.height);
     }
     newPos() {
@@ -206,25 +207,27 @@ class godPlayerGame {
         this.id = id;
         this.width = width;
         this.height = height;
-        this.speedX = 3;
-        this.speedY = 3;
+        this.speed = Math.floor(Math.random() * 3) + 2;
+        this.speedX = this.speed;
+        this.speedY = this.speed;
         this.image = new Image();
         this.image.src = color;
         this.x = x;
         this.y = y;
         this.ctx = myGameArea.context;
         this.speedBoom = 5;
+        this.testOne = 0
     }
     update() {
-        console.log(myGamePiece.gravitySpeedX)
+        let ctx = myGameArea.context;
+        
         if (this.LocationCheck) {
-            let ctx = myGameArea.context;
             ctx.drawImage(this.image,
                 this.x,
                 this.y,
                 this.width, this.height);
-            // this.drowParticles()
-
+            ctx.imageSmoothingQuality = "high";
+            this.testOne = 0
         } else if (myGamePiece.gravitySpeedX > this.speedBoom || myGamePiece.gravitySpeedX < -this.speedBoom || myGamePiece.gravitySpeedY > this.speedBoom || myGamePiece.gravitySpeedY < -this.speedBoom) {
             initalParticles.arrParticles = [];
             initalParticles.Px = this.x;
@@ -235,9 +238,22 @@ class godPlayerGame {
             })
             initalParticles.arrPlayerBad.splice(index, 1);
         } else {
+            if(this.testOne === 0){
+            ctx.drawImage(this.image,
+                this.x,
+                this.y,
+                this.width, this.height);
+            ctx.imageSmoothingQuality = "high";
             this.speedX = -this.speedX;
             this.speedY = -this.speedY;
+        }else{
+            ctx.drawImage(this.image,
+                this.x,
+                this.y,
+                this.width, this.height);
         }
+        this.testOne = 1
+    }
     }
     newPos() {
         this.x += this.speedX;
