@@ -1,9 +1,9 @@
-
 .wrap-all {
     width: min-content;
     margin: 0 auto;
     position: relative;
 }
+
 canvas {
     /* border: solid #dadada 1px; */
     background-color: rgba(250, 250, 250, 0.527);
@@ -24,13 +24,12 @@ canvas {
 }
 
 .butt {
-    /* margin: 5px; */
-    font-size: 40px;
-    color: rgb(122, 122, 122);
+    font-size: 39px;
+    color: rgba(0, 0, 0, 0.38);
+    font-weight: bold;
     width: 27px;
     height: 27px;
     border: none;
-    /* background-color: rgb(243, 218, 149); */
     user-select: none;
 }
 

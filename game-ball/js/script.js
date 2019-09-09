@@ -14,7 +14,7 @@ let myGamePiece;
 let initalGame = {
     startGame() {
         myGameArea.start();
-        myGamePiece = new mainPlayerGame(40, 40, './img/smill.png', myGameArea.canvas.width / 2 - 25, myGameArea.canvas.height / 2 - 25);
+        myGamePiece = new mainPlayerGame(50, 50, './img/smill.png', myGameArea.canvas.width / 2 - 25, myGameArea.canvas.height / 2 - 25);
         // initalParticles.createNewBadPlayer();
         this.addEventToBtn(myUpBtn, 'Y', -0.5, -5, 0)
         this.addEventToBtn(myDownBtn, 'Y', 0.5, 5, 0)
@@ -87,8 +87,8 @@ let myGameArea = {
     canvas: document.createElement("canvas"),
     start() {
         if (window.innerWidth > 767) {
-            this.canvas.width = 700;
-            this.canvas.height = 470;
+            this.canvas.width = 450;
+            this.canvas.height = 800;
         } else {
             this.canvas.width = window.innerWidth;
             this.canvas.height = window.innerHeight;
@@ -207,6 +207,7 @@ class godPlayerGame {
         this.id = id;
         this.width = width;
         this.height = height;
+        this.testSize = 0;
         this.speed = Math.floor(Math.random() * 3) + 2;
         this.speedX = this.speed;
         this.speedY = this.speed;
@@ -219,14 +220,8 @@ class godPlayerGame {
         this.testOne = 0
     }
     update() {
-        let ctx = myGameArea.context;
-        
         if (this.LocationCheck) {
-            ctx.drawImage(this.image,
-                this.x,
-                this.y,
-                this.width, this.height);
-            ctx.imageSmoothingQuality = "high";
+            this.drawPlayer();
             this.testOne = 0
         } else if (myGamePiece.gravitySpeedX > this.speedBoom || myGamePiece.gravitySpeedX < -this.speedBoom || myGamePiece.gravitySpeedY > this.speedBoom || myGamePiece.gravitySpeedY < -this.speedBoom) {
             initalParticles.arrParticles = [];
@@ -238,37 +233,45 @@ class godPlayerGame {
             })
             initalParticles.arrPlayerBad.splice(index, 1);
         } else {
-            if(this.testOne === 0){
-            ctx.drawImage(this.image,
-                this.x,
-                this.y,
-                this.width, this.height);
-            ctx.imageSmoothingQuality = "high";
-            this.speedX = -this.speedX;
-            this.speedY = -this.speedY;
-        }else{
-            ctx.drawImage(this.image,
-                this.x,
-                this.y,
-                this.width, this.height);
+            if (this.testOne === 0) {
+                this.drawPlayer();
+                this.speedX = -this.speedX;
+                this.speedY = -this.speedY;
+            } else {
+                this.drawPlayer();
+            }
+            this.testOne = 1;
+
         }
-        this.testOne = 1
-    }
+        if (this.testSize > 200) {
+            this.width = this.width + 5;
+            this.height = this.height + 5;
+            this.testSize = 0
+        }
+        this.testSize++;
     }
     newPos() {
         this.x += this.speedX;
         this.y += this.speedY;
         if (this.x >= myGameArea.canvas.width - this.width) {
+            this.x = myGameArea.canvas.width - this.width - 1
             this.speedX = -this.speedX;
+            // this.drawPlayer();
         }
         if (this.x <= 0) {
+            this.x = 1
             this.speedX = -this.speedX;
+            // this.drawPlayer();
         }
         if (this.y >= myGameArea.canvas.height - this.height) {
+            this.y = myGameArea.canvas.height - this.height - 1
             this.speedY = -this.speedY;
+            // this.drawPlayer();
         }
         if (this.y <= 0) {
+            this.y = 1
             this.speedY = -this.speedY;
+            // this.drawPlayer();
         }
         this.update()
         // this.LocationCheck()
@@ -287,6 +290,14 @@ class godPlayerGame {
             crash = true;
         }
         return crash;
+    }
+    drawPlayer() {
+        let ctx = myGameArea.context;
+        ctx.drawImage(this.image,
+            this.x,
+            this.y,
+            this.width, this.height);
+        ctx.imageSmoothingQuality = "high";
     }
 }
 
