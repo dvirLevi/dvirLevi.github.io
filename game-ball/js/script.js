@@ -1,21 +1,29 @@
-// import myGameArea from './myGameArea.js'
+import score from './score.js'
+import progressLife from './progressLife.js'
+import eventAndToggle from './eventAndToggle.js'
 
+const myUpBtn = document.getElementById('myUpBtn');
+const myDownBtn = document.getElementById('myDownBtn');
+const myLeftBtn = document.getElementById('myLeftBtn');
+const myRightBtn = document.getElementById('myRightBtn');
+const hamburger = document.getElementById('hamburger');
+const menu = document.getElementById('menu');
 
-let myUpBtn = document.getElementById('myUpBtn');
-let myDownBtn = document.getElementById('myDownBtn');
-let myLeftBtn = document.getElementById('myLeftBtn');
-let myRightBtn = document.getElementById('myRightBtn');
+const initalGameAll = () => {
+    initalGame.startGame();
+    score.innerScore(0)
+    progressLife.innerWidth(100)
+    eventAndToggle.addEvent(hamburger, menu)
+    eventAndToggle.addEvent(menu, menu)
+}
 
 
 let myGamePiece;
-// let myGameGod;
-
 
 let initalGame = {
     startGame() {
         myGameArea.start();
-        myGamePiece = new mainPlayerGame(50, 50, './img/smill.png', myGameArea.canvas.width / 2 - 25, myGameArea.canvas.height / 2 - 25);
-        // initalParticles.createNewBadPlayer();
+        myGamePiece = new mainPlayerGame(50, 50, myGameArea.canvas.width / 2 - 25, myGameArea.canvas.height / 2 - 25);
         this.addEventToBtn(myUpBtn, 'Y', -0.5, -5, 0)
         this.addEventToBtn(myDownBtn, 'Y', 0.5, 5, 0)
         this.addEventToBtn(myLeftBtn, 'X', -0.5, -5, 0)
@@ -86,12 +94,13 @@ let myGameArea = {
     wrapGame: document.getElementById("wrapGame"),
     canvas: document.createElement("canvas"),
     start() {
+        this.wrapGame.insertBefore(this.canvas, this.wrapGame.childNodes[2]);
         if (window.innerWidth > 767) {
             this.canvas.width = 450;
             this.canvas.height = 800;
         } else {
             this.canvas.width = window.innerWidth;
-            this.canvas.height = window.innerHeight;
+            this.canvas.height = this.heightBar;
         }
         let butt = document.getElementsByClassName('butt');
         for (let b of butt) {
@@ -99,8 +108,14 @@ let myGameArea = {
             b.style.width = this.canvas.width / 2 + 'px'
         }
         this.context = this.canvas.getContext("2d");
-        this.wrapGame.insertBefore(this.canvas, this.wrapGame.childNodes[2]);
+        console.log(this.wrapGame.offsetHeight)
         this.interval = setInterval(this.updateGameArea, 20);
+    },
+    get heightBar() {
+        const bar = document.getElementById('bar');
+        let heightBar = bar.offsetHeight;
+        let heightCanvas = window.innerHeight - heightBar;
+        return heightCanvas;
     },
     clear() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
@@ -108,7 +123,6 @@ let myGameArea = {
     updateGameArea() {
         myGameArea.clear();
         myGamePiece.newPos();
-        // myGameGod.newPos();
         initalParticles.update();
     }
 }
@@ -118,7 +132,7 @@ let myGameArea = {
 
 
 class mainPlayerGame {
-    constructor(width, height, color, x, y) {
+    constructor(width, height, x, y) {
         this.width = width;
         this.height = height;
         this.speedX = 0;
@@ -128,20 +142,17 @@ class mainPlayerGame {
         this.gravitySpeedX = 0;
         this.gravitySpeedY = 0;
         this.image = new Image();
-        this.image.src = color;
-        // this.color = color;
+        this.image.src = './img/smill.png';
         this.x = x;
         this.y = y;
     }
     update() {
-        // console.log(this.gravitySpeedX)
         let ctx = myGameArea.context;
         ctx.drawImage(this.image,
             this.x,
             this.y,
             this.width, this.height);
         ctx.imageSmoothingQuality = "high";
-        // ctx.fillRect(this.x, this.y, this.width, this.height);
     }
     newPos() {
         this.x += this.speedX + this.gravityXF;
@@ -216,7 +227,7 @@ class godPlayerGame {
         this.x = x;
         this.y = y;
         this.ctx = myGameArea.context;
-        this.speedBoom = 5;
+        this.speedBoom = 6;
         this.testOne = 0
     }
     update() {
@@ -232,16 +243,24 @@ class godPlayerGame {
                 return val.myGameGod.id == this.id
             })
             initalParticles.arrPlayerBad.splice(index, 1);
+
+            score.innerScore(+5)
         } else {
+            this.chengeImgMainPlayer();
             if (this.testOne === 0) {
                 this.drawPlayer();
                 this.speedX = -this.speedX;
                 this.speedY = -this.speedY;
+                if (score.numScore > 0) {
+                    score.innerScore(-2)
+                }
+                progressLife.innerWidth(-5)
             } else {
+
                 this.drawPlayer();
+                // myGamePiece.image.src = './img/sed.png'
             }
             this.testOne = 1;
-
         }
         if (this.testSize > 200) {
             this.width = this.width + 5;
@@ -249,6 +268,12 @@ class godPlayerGame {
             this.testSize = 0
         }
         this.testSize++;
+    }
+    chengeImgMainPlayer() {
+        myGamePiece.image.src = './img/sed.png';
+        setTimeout(() => {
+            myGamePiece.image.src = './img/smill.png';
+        }, 200);
     }
     newPos() {
         this.x += this.speedX;
@@ -315,7 +340,7 @@ const initalParticles = {
         this.createNewBadPlayer();
     },
     createNewBadPlayer() {
-        if (this.counter > 200) {
+        if (this.counter > 150) {
             let id = this.idPlayer;
             let x = Math.floor(Math.random() * myGameArea.canvas.height / 2);
             let y = Math.floor(Math.random() * myGameArea.canvas.width / 2);
@@ -347,9 +372,7 @@ const initalParticles = {
                 this.arrParticles[x].a.move()
             }
         }
-
     }
-
 }
 
 class drowParticles {
@@ -390,4 +413,4 @@ class drowParticles {
     }
 
 }
-initalGame.startGame();
+initalGameAll()

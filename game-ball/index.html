@@ -10,22 +10,43 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
         integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
     <link rel="stylesheet" href="style/style.css">
+    <script src="https://kit.fontawesome.com/c82c9241f9.js"></script>
 </head>
 
 <body>
+    <div id="menu" class="bg-menu">
+        <div class="menu">
+
+        </div>
+    </div>
     <div id="wrapGame" class="center-all wrap-all">
-        <!-- <div class="w-100 bg-primary">
-ad
-        </div> -->
+        <div id="bar" class="w-100 center-between p-3">
+            <div class="center-all">
+                <i id="hamburger" class="fas fa-bars h1"></i>
+            </div>
+            <div class="center-all w-75">
+                <div class="center-all w-50">
+                    <p class="m-0 h4">ניקוד: <span id="score"></span></p>
+                </div>
+                <div class="center-all w-50">
+                    <img class="w-25" src="img/smill.png" alt="">
+                    <div class="w-75 p-2">
+                        <div class="w-100 border">
+                            <div class="progress-life" id="progressLife"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div class="w-100 center-all content-butt">
             <div class="center-all">
                 <div class="w-100 center-all">
                     <div class="butt center-all" id="myUpBtn">&#8673;</div>
                 </div>
                 <div class="w-100 center-all">
-                    <div class="butt center-all" id="myLeftBtn">&#8672;</div>
-                    <!-- <div class="push-butt"></div> -->
                     <div class="butt center-all" id="myRightBtn">&#8674;</div>
+
+                    <div class="butt center-all" id="myLeftBtn">&#8672;</div>
                 </div>
                 <div class="w-100 center-all">
                     <div class="butt center-all" id="myDownBtn">&#8675;</div>
@@ -33,6 +54,7 @@ ad
             </div>
         </div>
     </div>
+
     <!-- <script src="dragdroptouch-master/DragDropTouch.js"></script> -->
     <script src="/game-ball/js/script.js" type="module"></script>
 </body>
