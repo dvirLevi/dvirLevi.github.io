@@ -16,6 +16,7 @@ const wrapButtStart = document.getElementById('wrapButtStart');
 
 
 const openGame = () => {
+    myGameArea.start();
     setTimeout(() => {
         eventAndToggle.addToggle(openScreen)
     }, 3000);
@@ -24,7 +25,6 @@ const openGame = () => {
 }
 
 const initalGameAll = () => {
-    myGameArea.start();
     score.innerScore(0);
     progressLife.innerWidth(100);
     eventAndToggle.addEvent(hamburger, menu);
@@ -37,8 +37,8 @@ const initalGameAll = () => {
 
 let myGamePiece;
 startGame.onclick = () => {
-    initalGame.startGame();
     wrapButtStart.style.display = 'none';
+    initalGame.startGame();
 }
 
 let initalGame = {
@@ -128,12 +128,13 @@ let myGameArea = {
             b.style.width = this.canvas.width / 2 + 'px'
         }
         this.context = this.canvas.getContext("2d");
-        console.log(this.wrapGame.offsetHeight)
+        console.log(this.heightBar)
 
     },
     get heightBar() {
         const bar = document.getElementById('bar');
         let heightBar = bar.offsetHeight;
+        console.log(heightBar)
         let heightCanvas = window.innerHeight - heightBar;
         return heightCanvas;
     },
@@ -166,10 +167,6 @@ let myGameArea = {
         this.finalGame();
     },
 }
-
-
-
-
 
 class mainPlayerGame {
     constructor(width, height, x, y) {

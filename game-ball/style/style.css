@@ -79,6 +79,19 @@ canvas {
     width: 45%;
     height: 100%;
     background-color: rgb(255, 255, 255);
+    flex-direction: column;
+}
+
+.menu div{
+    text-align: center;
+    width: 100%;
+    font-size: 25px;
+    padding: 10px;
+    border-bottom: solid rgb(165, 165, 165) 1px;
+}
+
+.menu div:last-child {
+    border-bottom: none;
 }
 
 .content-modal {
@@ -86,9 +99,17 @@ width: 90%;
 background-color: #ffffff;
 }
 
-i {
+.hamburger {
+    width: 40px;
     position: relative;
-    z-index: 3;
+    z-index: 5;
+}
+
+.hamburger div {
+    background-color: black;
+    width: 100%;
+    margin: 3px;
+    height: 6px;
 }
 
 input {
