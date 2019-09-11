@@ -1,6 +1,11 @@
 const eventAndToggle = {
-    addEvent(Toggle, el) {
-        el.style.display = 'none'
+    addEvent(Toggle, el, firstInital) {
+        if(firstInital === 'block'){
+        el.style.display = 'block'
+
+        }else{
+            el.style.display = 'none'
+        }
         Toggle.onclick = () => {
             this.addToggle(el)
         }

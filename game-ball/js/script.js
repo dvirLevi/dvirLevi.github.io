@@ -8,26 +8,46 @@ const myLeftBtn = document.getElementById('myLeftBtn');
 const myRightBtn = document.getElementById('myRightBtn');
 const hamburger = document.getElementById('hamburger');
 const menu = document.getElementById('menu');
+// const closeModalScore = document.getElementById('closeModalScore');
+const modalScore = document.getElementById('modalScore');
+const openScreen = document.getElementById('openScreen');
+const startGame = document.getElementById('startGame');
+const wrapButtStart = document.getElementById('wrapButtStart');
+
+
+const openGame = () => {
+    setTimeout(() => {
+        eventAndToggle.addToggle(openScreen)
+    }, 3000);
+    // alert()
+    initalGameAll()
+}
 
 const initalGameAll = () => {
-    initalGame.startGame();
-    score.innerScore(0)
-    progressLife.innerWidth(100)
-    eventAndToggle.addEvent(hamburger, menu)
-    eventAndToggle.addEvent(menu, menu)
+    myGameArea.start();
+    score.innerScore(0);
+    progressLife.innerWidth(100);
+    eventAndToggle.addEvent(hamburger, menu);
+    eventAndToggle.addEvent(menu, menu);
+    // eventAndToggle.addEvent(startGame, wrapButtStart, 'block')
+    // eventAndToggle.addEvent(closeModalScore, modalScore)
+    eventAndToggle.addEvent(modalScore, modalScore);
 }
 
 
 let myGamePiece;
+startGame.onclick = () => {
+    initalGame.startGame();
+    wrapButtStart.style.display = 'none';
+}
 
 let initalGame = {
     startGame() {
-        myGameArea.start();
-        myGamePiece = new mainPlayerGame(50, 50, myGameArea.canvas.width / 2 - 25, myGameArea.canvas.height / 2 - 25);
         this.addEventToBtn(myUpBtn, 'Y', -0.5, -5, 0)
         this.addEventToBtn(myDownBtn, 'Y', 0.5, 5, 0)
         this.addEventToBtn(myLeftBtn, 'X', -0.5, -5, 0)
         this.addEventToBtn(myRightBtn, 'X', 0.5, 5, 0)
+        myGameArea.intervalGame()
     },
     addEventToBtn(el, axis, gravity, run, stop) {
         el.onclick = () => {
@@ -109,7 +129,7 @@ let myGameArea = {
         }
         this.context = this.canvas.getContext("2d");
         console.log(this.wrapGame.offsetHeight)
-        this.interval = setInterval(this.updateGameArea, 20);
+
     },
     get heightBar() {
         const bar = document.getElementById('bar');
@@ -117,14 +137,34 @@ let myGameArea = {
         let heightCanvas = window.innerHeight - heightBar;
         return heightCanvas;
     },
+    intervalGame() {
+        myGamePiece = new mainPlayerGame(50, 50, myGameArea.canvas.width / 2 - 25, myGameArea.canvas.height / 2 - 25);
+        this.interval = setInterval(() => {
+            this.updateGameArea()
+        }, 20);
+    },
     clear() {
         this.context.clearRect(0, 0, this.canvas.width, this.canvas.height);
     },
+    finalGame() {
+        // alert()
+        if (progressLife.width <= 0) {
+            clearInterval(this.interval);
+            eventAndToggle.addToggle(modalScore);
+            wrapButtStart.style.display = 'block';
+            progressLife.width = 100;
+            progressLife.innerWidth(0);
+            score.numScore = 0;
+            score.innerScore(0);
+            initalParticles.arrPlayerBad = [];
+        }
+    },
     updateGameArea() {
-        myGameArea.clear();
+        this.clear();
         myGamePiece.newPos();
         initalParticles.update();
-    }
+        this.finalGame();
+    },
 }
 
 
@@ -227,7 +267,7 @@ class godPlayerGame {
         this.x = x;
         this.y = y;
         this.ctx = myGameArea.context;
-        this.speedBoom = 6;
+        this.speedBoom = 4;
         this.testOne = 0
     }
     update() {
@@ -413,4 +453,5 @@ class drowParticles {
     }
 
 }
-initalGameAll()
+// initalGameAll()
+openGame()
