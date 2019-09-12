@@ -31,7 +31,7 @@ const initalGameAll = () => {
     eventAndToggle.addEvent(menu, menu);
     // eventAndToggle.addEvent(startGame, wrapButtStart, 'block')
     // eventAndToggle.addEvent(closeModalScore, modalScore)
-    eventAndToggle.addEvent(modalScore, modalScore);
+    eventAndToggle.addEvent(modalScore, modalScore, 'none', 'self');
 }
 
 

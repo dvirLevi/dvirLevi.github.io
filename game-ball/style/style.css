@@ -81,6 +81,7 @@ canvas {
     height: 100%;
     background-color: rgb(255, 255, 255);
     flex-direction: column;
+    padding: 5px;
 }
 
 .menu div{
@@ -89,6 +90,7 @@ canvas {
     font-size: 25px;
     padding: 10px;
     border-bottom: solid rgb(165, 165, 165) 1px;
+    pointer-events: none;
 }
 
 .menu div:last-child {
@@ -98,7 +100,27 @@ canvas {
 .content-modal {
 width: 90%;
 background-color: #ffffff;
+position: relative;
+border-radius: 5px;
+z-index: 1;
+/* pointer-events: none; */
 }
+
+.content-modal::after {
+    background-size: 42%;
+    background-position: center;
+    content: "";
+    background-image: url(/game-ball/img/party.png);
+    background-repeat: no-repeat;
+    opacity: 0.3;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+
+    }
 
 .content-modal p{
    color: var(--color-button-text-modal);
@@ -120,6 +142,7 @@ background-color: #ffffff;
 input {
     border: solid var(--color-button-text-modal) 2px;
     padding: 5px;
+    background-color: rgba(255, 0, 0, 0);
 }
 
 .all-butt {
