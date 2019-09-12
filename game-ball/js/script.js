@@ -8,7 +8,7 @@ const myLeftBtn = document.getElementById('myLeftBtn');
 const myRightBtn = document.getElementById('myRightBtn');
 const hamburger = document.getElementById('hamburger');
 const menu = document.getElementById('menu');
-// const closeModalScore = document.getElementById('closeModalScore');
+const closeModalScore = document.getElementById('closeModalScore');
 const modalScore = document.getElementById('modalScore');
 const openScreen = document.getElementById('openScreen');
 const startGame = document.getElementById('startGame');
@@ -29,9 +29,8 @@ const initalGameAll = () => {
     progressLife.innerWidth(100);
     eventAndToggle.addEvent(hamburger, menu);
     eventAndToggle.addEvent(menu, menu);
-    // eventAndToggle.addEvent(startGame, wrapButtStart, 'block')
-    // eventAndToggle.addEvent(closeModalScore, modalScore)
-    eventAndToggle.addEvent(modalScore, modalScore, 'none', 'self');
+    // eventAndToggle.addEvent(modalScore, modalScore, 'none', 'self');
+    eventAndToggle.addEvent(closeModalScore, modalScore, 'none');
 }
 
 

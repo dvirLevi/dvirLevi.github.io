@@ -1,6 +1,6 @@
 const eventAndToggle = {
     addEvent(Toggle, el, firstInital, ifOnlySelf) {
-        if(firstInital === 'block'){
+        if(firstInital === 'flex'){
         el.style.display = 'flex'
 
         }else {
