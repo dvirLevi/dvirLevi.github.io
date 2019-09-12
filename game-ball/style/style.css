@@ -3,6 +3,7 @@
 html, body {
     font-family: 'Rubik', sans-serif;
     direction: rtl;
+    --color-button-text-modal: #ff8845;
 }
 
 .wrap-all {
@@ -99,6 +100,10 @@ width: 90%;
 background-color: #ffffff;
 }
 
+.content-modal p{
+   color: var(--color-button-text-modal);
+    }
+
 .hamburger {
     width: 40px;
     position: relative;
@@ -113,13 +118,13 @@ background-color: #ffffff;
 }
 
 input {
-    border: solid #f8ae3c 2px;
+    border: solid var(--color-button-text-modal) 2px;
     padding: 5px;
 }
 
 .all-butt {
     border: none;
-    background-color: #f8ae3c;
+    background-color: var(--color-button-text-modal);
     color: #ffffff;
     /* font-size: 20px; */
     margin: 10px;
