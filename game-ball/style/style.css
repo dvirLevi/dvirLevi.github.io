@@ -12,6 +12,8 @@ html, body {
     width: min-content;
     margin: 0 auto;
     position: relative;
+    /* width : 450;
+    height : 800; */
 }
 
 canvas {
@@ -154,4 +156,12 @@ input {
     /* font-size: 20px; */
     margin: 10px;
     padding: 5px;
+}
+
+
+@media (max-width: 767.98px) {
+    .wrap-all {
+       min-width : 100%;
+       min-height : 100%;
+    }
 }
