@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="eh">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <title>app</title>
+    <link rel="icon" href="img/bread.png">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
+        crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="css/css.css">
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.21/dist/vue.js"></script>
+</head>
+
+<body>
+    <div id="app" class="container-fluid" v-on:click="closef">
+        <menu-app v-bind:close="close" v-on:open="closet" v-on:openmodal="openmodal"></menu-app>
+        <select-add v-bind:close="close" v-bind:bread="bread" v-bind:spread="spread" v-on:addspre="addspre" v-on:addbre="addbre"
+            v-bind:addspread="addspread" v-bind:addbread="addbread" v-on:push-in-drag="pushInDrag" v-bind:mybread="mybread" v-bind:myspread="myspread" v-bind:modal="modal"></select-add>
+        <drag-screen v-bind:setsenw="setsenw" v-on:dragf="dragf" v-on:clearset="clearset"></drag-screen>
+        <send-table v-bind:storeset="storeset" v-on:cleanstoreset="cleanstoreset" v-bind:savedrag="savedrag"></send-table>
+        <modal-l v-if="modal" v-on:closemodal="closemodal" v-bind:myspread="myspread" v-bind:mybread="mybread" v-on:addmybread="addmybread" v-on:addmyspread="addmyspread" v-on:deletespread="deletespread" v-on:deletebread="deletebread"></modal-l>
+    </div>
+    <!-- The Modal -->
+<div class="modal-c">
+
+        <!-- Modal content -->
+        <div class="modal-c-content">
+          <p>לחווית משתמש טובה יש להשתמש באתר באמצעות סמארטפון</p>
+        </div>
+      
+      </div>
+    <script src="dragdroptouch-master/DragDropTouch.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
