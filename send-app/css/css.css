@@ -228,6 +228,7 @@ body {
     border-radius: 100%;
     margin: 3%;
     z-index: 1;
+    top: 0
 }
 
 .x-2 {
@@ -244,6 +245,7 @@ body {
     border-radius: 100%;
     margin: 3%;
     z-index: 1;
+    top: 0
 }
 
 .x img {
@@ -401,7 +403,8 @@ body {
     float: right;
     border: solid 0.5px;
     text-align: center;
-    height: 70px
+    height: 70px;
+    position: relative;
 }
 
 .child p {
