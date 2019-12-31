@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html dir="rtl">
+
+<head>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-61347825-2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-61347825-2');
+</script>
+
+    <meta charset="UTF-8">
+    <title>לימוד אלף בי</title>
+    <link href="css/style_alaf.css" rel="stylesheet">
+    <script src="js/js_alaf.js"></script>
+</head>
+
+<body onload="init ()">
+    <div class="allapp">
+        <div id="openapp" class="openapp">
+            <br>
+            <p class="appalaf">אפליקציית אַלַף-בֵּי </p>
+            <p class="appalaf_2">ללימוד שמות האותיות <br>לפי נוסח תימן</p>
+            <div class="divbutt_start">
+                <div class="butt_start" onclick="chengscreen ()">להתחלה לחץ כאן</div>
+            </div>
+            <p class="appalaf_3">לחזרה ופיתוח הלימוד עם האב </p>
+            <p class="appalaf_4">כל הזכויות שמורות </p>
+        </div>
+        <div id="menuapp" class="menuapp">
+            <br>
+            <p class="menu">תפריט</p>
+            <div class="menu_1" onclick="chenglater ()">
+                לימוד שמות האותיות
+            </div>
+            <div id="menu_2" class="menu_2">
+                לימוד ניקוד האותיות
+            </div>
+        </div>
+        <div id="learn_latterid" class="learn_latter">
+            <div class="manu_learn_latter">
+                <div id="manu_learn_latter1" class="manu_learn_latter1" onclick="alafbey_audio ()">
+                    לימוד שמות האותיות <br>כסדרן
+                </div>
+                <div id="manu_learn_latter3" class="manu_learn_latter3" onclick="alafbey_random ()">
+                    לימוד שמות האותיות <br>לא כסדרן
+                </div>
+                <div id="manu_learn_latter2" class="manu_learn_latter2" onclick="che_beck ()">
+                    חזרה על שמות האותיות
+                </div>
+            </div>
+            <br>
+            <div class="in_latter">
+                לחץ על האות
+            </div>
+            <div id="learen_alafbey" class="learen_alafbey">
+                <div id="alaf" class="alaf" onclick="alafbey_audio ()">
+                    א
+                </div>
+                <audio id="audio_alaf" src="audio/1.wav"></audio>
+            </div>
+            <div id="in_learne" class="in_learne">
+                <div id="flexinlearne" class="flexinlearne">
+                    <div id="bm" class="in_learne1" onclick="no_good ()">ג</div>
+                    <div id="am" class="in_learne2" onclick="goodall ()">א</div>
+                    <div id="cm" class="in_learne3" onclick="no_good ()">מ</div>
+                    <audio id="audio_in_learne">
+                        <source src="audio/where.wav" type="audio/mpeg">
+                    </audio>
+                    <audio id="good">
+                        <source src="audio/good.wav" type="audio/mpeg">
+                    </audio>
+                    <audio id="nogood">
+                        <source src="audio/nogood.wav" type="audio/mpeg">
+                    </audio>
+                </div>
+            </div>
+
+
+
+        </div>
+
+
+
+
+
+
+
+
+
+
+    </div>
+    <div id="_beck_me" class="beck_me" onclick="beck_me ()">
+        לחזרה לתפריט הראשי
+    </div>
+</body>
+
+</html>
