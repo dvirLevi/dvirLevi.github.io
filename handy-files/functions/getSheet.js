@@ -48,4 +48,4 @@ const getSheet = async (sheetId, arrProp) => {
     }
 }
 
-// export default getSheet
+export default getSheet
