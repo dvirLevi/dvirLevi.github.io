@@ -4,8 +4,9 @@ const getSheet = async (sheetId, arrProp) => {
 
         const ifArrOrObjForEval = (str) => {
             let ifArrOrObj = (arrOfObjStr) => {
-                const firstCharcter = arrOfObjStr.charAt(0)
-                const lastCharcter = arrOfObjStr.charAt(arrOfObjStr.length - 1)
+                const trimStr = arrOfObjStr.trim();
+                const firstCharcter = trimStr.charAt(0)
+                const lastCharcter = trimStr.charAt(trimStr.length - 1)
                 if (firstCharcter === '[' && lastCharcter === ']' || firstCharcter === '{' && lastCharcter === '}') {
                     return true
                 }
@@ -47,5 +48,3 @@ const getSheet = async (sheetId, arrProp) => {
         console.log(err)
     }
 }
-
-// export default getSheet
