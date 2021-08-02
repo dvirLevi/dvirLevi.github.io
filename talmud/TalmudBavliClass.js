@@ -500,7 +500,7 @@ class TalmudBavli {
   }
 }
 
-const talmudBavli = new TalmudBavli()
+const talmudBavlig = new TalmudBavli()
 
 // export {
 //   talmudBavli,
