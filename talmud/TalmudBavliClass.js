@@ -501,8 +501,3 @@ class TalmudBavli {
 }
 
 const talmudBavli = new TalmudBavli()
-
-export {
-  talmudBavli,
-  TalmudBavli
-}
