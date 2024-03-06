@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>User Location Tracking</title>
+<style>
+    #arrow {
+        font-size: 24px;
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+    }
+</style>
+</head>
+<body>
+<div id="userState"></div>
+<div id="userSpeed"></div>
+<div id="arrow">&#8594;</div>
+
+<script>
+let prevPosition = null;
+const SPEED_THRESHOLD = 0.5; // Threshold in meters per second
+
+function watchUserLocation() {
+    if (navigator.geolocation) {
+        navigator.geolocation.watchPosition(updateUserLocation);
+    } else {
+        console.error("Geolocation is not supported by this browser.");
+    }
+}
+
+function updateUserLocation(position) {
+    let userState = ""; // Initialize user state
+    let userSpeed = 0; // Initialize user speed
+    if (prevPosition) {
+        const distance = calculateDistance(prevPosition.coords.latitude, prevPosition.coords.longitude, position.coords.latitude, position.coords.longitude);
+        const timeDiff = (position.timestamp - prevPosition.timestamp) / 1000; // Convert milliseconds to seconds
+        userSpeed = distance / timeDiff; // Speed in meters per second
+        if (userSpeed > SPEED_THRESHOLD) {
+            userState = "Moving";
+            const direction = calculateDirection(prevPosition.coords.latitude, prevPosition.coords.longitude, position.coords.latitude, position.coords.longitude);
+            // Update the UI with direction information (e.g., rotate arrow)
+            updateArrowDirection(direction);
+        } else {
+            userState = "Static";
+        }
+    } else {
+        userState = "Static";
+    }
+    // Update UI with user state and speed information
+    updateUserInfo(userState, userSpeed);
+    prevPosition = position;
+}
+
+function calculateDistance(lat1, lon1, lat2, lon2) {
+    const R = 6371; // Radius of the earth in km
+    const dLat = deg2rad(lat2 - lat1);
+    const dLon = deg2rad(lon2 - lon1);
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) *
+        Math.sin(dLon / 2) * Math.sin(dLon / 2);
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    const d = R * c * 1000; // Distance in meters
+    return d;
+}
+
+function deg2rad(deg) {
+    return deg * (Math.PI / 180);
+}
+
+function calculateDirection(lat1, lon1, lat2, lon2) {
+    const dLon = deg2rad(lon2 - lon1);
+    const y = Math.sin(dLon) * Math.cos(deg2rad(lat2));
+    const x = Math.cos(deg2rad(lat1)) * Math.sin(deg2rad(lat2)) -
+              Math.sin(deg2rad(lat1)) * Math.cos(deg2rad(lat2)) * Math.cos(dLon);
+    let brng = Math.atan2(y, x);
+    brng = (brng * 180) / Math.PI;
+    brng = (brng + 360) % 360; // Normalize to 0-360 degrees
+    return brng;
+}
+
+function updateArrowDirection(direction) {
+    const arrowElement = document.getElementById('arrow');
+    arrowElement.style.transform = `rotate(${direction}deg)`;
+}
+
+function updateUserInfo(state, speed) {
+    // Update the UI to display user state and speed information
+    document.getElementById('userState').innerText = `User is ${state}`;
+    document.getElementById('userSpeed').innerText = `Speed: ${speed.toFixed(2)} m/s`;
+}
+
+// Start watching user location
+watchUserLocation();
+</script>
+</body>
+</html>
